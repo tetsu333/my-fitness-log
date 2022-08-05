@@ -26,7 +26,7 @@ export const UserRegister: FC = memo(() => {
       <h1>MyFitnessLogユーザー登録</h1>
       <input
         type="text"
-        placeholder="名前"
+        placeholder="ユーザー名"
         value={userName}
         onChange={onChangeUserName}
       ></input>

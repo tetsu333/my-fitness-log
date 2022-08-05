@@ -28,8 +28,9 @@ export const useUserRegister = () => {
             history.push("/home");
           }
         })
-        .catch(() => {
+        .catch((res) => {
           alert("ユーザーを作成できません");
+          console.log(res);
           setLoading(false);
         });
     },
