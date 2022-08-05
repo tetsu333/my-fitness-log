@@ -3,7 +3,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  profile: string;
+  memo: string;
   created_at: Date;
   updated_at: Date;
 };

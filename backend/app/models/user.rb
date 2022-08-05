@@ -9,7 +9,7 @@ class User < ApplicationRecord
     validates :name
     validates :email
     validates :password_digest
-    validates :profile
   end
+  validates :memo, length: { maximum: 5000 }
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: true
 end
