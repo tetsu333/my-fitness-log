@@ -23,14 +23,11 @@ export const useUserRegister = () => {
             alert("ユーザーを作成しました");
             history.push("/home");
           } else {
-            alert("error");
             setLoading(false);
-            history.push("/home");
           }
         })
         .catch((res) => {
-          alert("ユーザーを作成できません");
-          console.log(res);
+          alert(res.response.data);
           setLoading(false);
         });
     },

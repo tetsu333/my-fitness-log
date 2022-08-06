@@ -14,6 +14,5 @@ class User < ApplicationRecord
     validates :name
     validates :email
   end
-  validates :memo, length: { maximum: 5000 }
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 end

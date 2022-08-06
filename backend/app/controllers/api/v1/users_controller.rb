@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :ok
     else
-      render json: {messages: user.errors.full_messages}, status: :bad_request
+      render json: user.errors.full_messages, status: :bad_request
     end
   end
 
