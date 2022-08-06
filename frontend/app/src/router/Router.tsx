@@ -7,6 +7,7 @@ import { Page404 } from "../components/pages/Page404";
 import { HeaderLayout } from "../components/templates/HeaderLayout";
 import { LoginUserProvider } from "../providers/LoginUserProvider";
 import { UserRegister } from "../components/pages/UserRegister";
+import { PrivateRoute } from "./PrivateRoute";
 
 export const Router: FC = memo(() => {
   return (
@@ -18,7 +19,7 @@ export const Router: FC = memo(() => {
         <Route exact path="/user_register">
           <UserRegister />
         </Route>
-        <Route
+        <PrivateRoute
           path="/home"
           render={({ match: { url } }) => (
             <Switch>
