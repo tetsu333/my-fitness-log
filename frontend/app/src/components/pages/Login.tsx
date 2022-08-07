@@ -1,4 +1,6 @@
-import { memo, FC, useState, ChangeEvent } from "react";
+import { memo, FC, useState, ChangeEvent, useCallback } from "react";
+import { useHistory } from "react-router-dom";
+
 import { useAuth } from "../../hooks/useAuth";
 
 export const Login: FC = memo(() => {
@@ -14,9 +16,16 @@ export const Login: FC = memo(() => {
   const onClickLogin = () =>
     login({ email: userEmail, password: userPassword });
 
+  const history = useHistory();
+  const onClickUserRegister = useCallback(
+    () => history.push("/user_register"),
+    [history]
+  );
+
   return (
     <>
       <h1>MyFitnessLog</h1>
+      <h2>ログイン</h2>
       <input
         type="text"
         placeholder="メールアドレス"
@@ -35,6 +44,7 @@ export const Login: FC = memo(() => {
       >
         ログイン
       </button>
+      <h2 onClick={onClickUserRegister}>新規ユーザー登録はこちら</h2>
     </>
   );
 });

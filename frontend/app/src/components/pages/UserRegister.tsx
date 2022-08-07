@@ -1,4 +1,6 @@
-import { memo, FC, useState, ChangeEvent } from "react";
+import { memo, FC, useState, ChangeEvent, useCallback } from "react";
+import { useHistory } from "react-router-dom";
+
 import { useUserRegister } from "../../hooks/useUserRegister";
 
 export const UserRegister: FC = memo(() => {
@@ -21,9 +23,13 @@ export const UserRegister: FC = memo(() => {
       password: userPassword,
     });
 
+  const history = useHistory();
+  const onClickTop = useCallback(() => history.push("/"), [history]);
+
   return (
     <>
-      <h1>MyFitnessLogユーザー登録</h1>
+      <h1>MyFitnessLog</h1>
+      <h2>新規ユーザー登録</h2>
       <input
         type="text"
         placeholder="ユーザー名"
@@ -50,6 +56,7 @@ export const UserRegister: FC = memo(() => {
       >
         登録
       </button>
+      <h2 onClick={onClickTop}>トップページに戻る</h2>
     </>
   );
 });
