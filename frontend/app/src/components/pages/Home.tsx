@@ -1,12 +1,10 @@
 import { memo, FC } from "react";
 
-import { useLoginUser } from "../../hooks/useLoginUser";
 import { useLoginRequired } from "../../hooks/useLoginUser";
 
 export const Home: FC = memo(() => {
-  const { loginUser } = useLoginUser();
+  const loginUser = useLoginRequired();
   console.log(loginUser);
-  useLoginRequired();
 
   return <p>HOMEページです</p>;
 });

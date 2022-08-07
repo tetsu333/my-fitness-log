@@ -13,4 +13,5 @@ export const useLoginRequired = () => {
   const history = useHistory();
   const { loginUser } = useLoginUser();
   if (loginUser == null) history.push("/");
+  return loginUser;
 };
