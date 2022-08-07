@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import {
   LoginUserContext,
@@ -7,3 +8,9 @@ import {
 
 export const useLoginUser = (): LoginUserContextType =>
   useContext(LoginUserContext);
+
+export const useLoginRequired = () => {
+  const history = useHistory();
+  const user = useLoginUser();
+  if (user.loginUser == null) history.push("/");
+};
