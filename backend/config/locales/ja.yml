@@ -7,3 +7,16 @@ ja:
         name: ユーザー名
         email: メールアドレス
         password: パスワード
+      exercise:
+        user_id: ユーザーID
+        name: 種目名
+        exercise_type: 部位
+  enums:
+    exercise:
+      exercise_type:
+        chest: 胸部
+        back: 背部
+        leg: 脚部
+        shoulder: 肩部
+        arm: 腕部
+        abdominal: 腹部

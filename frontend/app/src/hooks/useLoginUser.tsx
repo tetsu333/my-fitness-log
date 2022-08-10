@@ -12,6 +12,6 @@ export const useLoginUser = (): LoginUserContextType =>
 export const useLoginRequired = () => {
   const history = useHistory();
   const { loginUser } = useLoginUser();
-  if (loginUser == null) history.push("/");
+  if (loginUser == null) return history.push("/");
   return loginUser;
 };

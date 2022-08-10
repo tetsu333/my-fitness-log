@@ -21,8 +21,8 @@ export const Header: FC = memo(() => {
         <h1>MyFitnessLog</h1>
       </div>
       <div>
-        <h2 onClick={onClickExercises}>種目</h2>
-        <h2 onClick={onClickRepetitions}>回数</h2>
+        <p onClick={onClickExercises}>種目</p>
+        <p onClick={onClickRepetitions}>回数</p>
         <button onClick={() => logout()}>ログアウト</button>
       </div>
     </>

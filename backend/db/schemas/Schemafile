@@ -1,1 +1,2 @@
+require "exercises.schema.rb"
 require "users.schema.rb"

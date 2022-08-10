@@ -21,6 +21,7 @@ export const UserRegister: FC = memo(() => {
       name: userName,
       email: userEmail,
       password: userPassword,
+      password_confirmation: userPassword,
     });
 
   const history = useHistory();
@@ -56,7 +57,7 @@ export const UserRegister: FC = memo(() => {
       >
         登録
       </button>
-      <h2 onClick={onClickTop}>トップページに戻る</h2>
+      <h2 onClick={onClickTop}>戻る</h2>
     </>
   );
 });
