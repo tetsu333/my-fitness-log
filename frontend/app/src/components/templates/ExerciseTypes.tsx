@@ -21,6 +21,6 @@ export const ExerciseTypes = [
   },
   {
     en: "abdominal",
-    ja: "服部",
+    ja: "腹部",
   },
 ];

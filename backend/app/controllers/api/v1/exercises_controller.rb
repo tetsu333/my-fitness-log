@@ -6,7 +6,7 @@ class Api::V1::ExercisesController < ApplicationController
   def create
     exercise = Exercise.new(exercise_params)
     if exercise.save
-      render json: {message: "success! #{Time.now}"}, status: :ok
+      render json: {message: "id:#{exercise.id} success!"}, status: :ok
     else
       render json: exercise.errors.full_messages, status: :bad_request
     end

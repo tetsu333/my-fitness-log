@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 import { User } from "../types/api/user";
-import { UserRegister } from "../types/api/userRegister";
+import { UserRegister } from "../types/api/user";
 import { useLoginUser } from "./useLoginUser";
 
 export const useUserRegister = () => {
