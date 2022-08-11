@@ -59,7 +59,7 @@ export const Exercises: FC = memo(() => {
         <>
           <h2>種目ページ</h2>
           <select onChange={onChangeExerciseType}>
-            <option value="">選択してください</option>
+            <option value="">部位を選択</option>
             {ExerciseTypes.map((typeName) => (
               <option value={typeName.en} key={typeName.en}>
                 {typeName.ja}

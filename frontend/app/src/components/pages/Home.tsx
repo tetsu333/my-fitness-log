@@ -6,5 +6,5 @@ export const Home: FC = memo(() => {
   const loginUser = useLoginRequired();
   console.log(loginUser);
 
-  return <p>HOMEページです</p>;
+  return <p>{loginUser?.name}の筋トレノート</p>;
 });
