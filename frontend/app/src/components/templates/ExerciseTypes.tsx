@@ -24,3 +24,11 @@ export const ExerciseTypes = [
     ja: "腹部",
   },
 ];
+
+export const ExerciseTypeTranslation = (exercise_type: string | number) => {
+  for (let i = 0; i < ExerciseTypes.length; i++) {
+    if (ExerciseTypes[i].en == exercise_type || i == exercise_type) {
+      return ExerciseTypes[i].ja;
+    }
+  }
+};

@@ -11,6 +11,12 @@ ja:
         user_id: ユーザーID
         name: 種目名
         exercise_type: 部位
+      repetition:
+        user_id: ユーザーID
+        exercise_id: 種目
+        repetition_num: 回数
+        weight: 重量
+        exercise_date: 筋トレ日
   enums:
     exercise:
       exercise_type:

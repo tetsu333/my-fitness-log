@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :exercises, dependent: :destroy
+  has_many :repetitions, dependent: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i

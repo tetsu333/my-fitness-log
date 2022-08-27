@@ -9,10 +9,6 @@ export const Header: FC = memo(() => {
     () => history.push("/home/exercises"),
     [history]
   );
-  const onClickRepetitions = useCallback(
-    () => history.push("/home/repetitions"),
-    [history]
-  );
   const { logout } = useAuth();
 
   return (
@@ -21,8 +17,7 @@ export const Header: FC = memo(() => {
         <h1>MyFitnessLog</h1>
       </div>
       <div>
-        <p onClick={onClickExercises}>種目</p>
-        <p onClick={onClickRepetitions}>回数</p>
+        <p onClick={onClickExercises}>種目一覧</p>
         <button onClick={() => logout()}>ログアウト</button>
       </div>
     </>
