@@ -1,6 +1,6 @@
 class Api::V1::ExercisesController < ApplicationController
   def index
-    render json: Exercise.where(user_id: params[:user_id]), status: :ok
+    render json: Exercise.where(user_id: params[:user_id]).order(exercise_type: :asc, name: :asc), status: :ok
   end
 
   def create

@@ -12,6 +12,13 @@ class Api::V1::RepetitionsController < ApplicationController
     end
   end
 
+  def destroy
+    repetition = Repetition.find_by(id: params[:id])
+    if repetition.destroy
+      render json: {message: "id:#{repetition.id} success!"}, status: :ok
+    end
+  end
+
   private
     def repetition_params
       params.permit(:user_id, :exercise_id, :repetition_num, :weight, :exercise_date)

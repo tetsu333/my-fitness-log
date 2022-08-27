@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       post "login", to: "sessions#create"
       delete "logout", to: "sessions#destroy"
       resources :exercises, only: [:index, :create]
-      resources :repetitions, only: [:index, :create]
+      resources :repetitions, only: [:index, :create, :destroy]
       resources :users, :only => :create
     end
   end

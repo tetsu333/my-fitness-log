@@ -5,6 +5,7 @@ import { useCreateRepetition } from "../../hooks/useCreateRepetition";
 import { useAllExercises } from "../../hooks/useAllExercises";
 import { useRepetitions } from "../../hooks/useRepetitions";
 import { ExerciseTypeTranslation } from "../templates/ExerciseTypes";
+import { useDeleteRepetition } from "../../hooks/useDeleteRepetition";
 
 export const Repetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -12,6 +13,7 @@ export const Repetitions: FC = memo(() => {
   const { createRepetition, loading, createMessage } = useCreateRepetition();
   const { getExercises, exercises } = useAllExercises();
   const { getRepetitions, repetitions } = useRepetitions();
+  const { deleteRepetition, deleteMessage } = useDeleteRepetition();
 
   const date = new Date();
   date.setTime(date.getTime() + 1000 * 60 * 60 * 9); // JSTに変換
@@ -20,7 +22,10 @@ export const Repetitions: FC = memo(() => {
   const [repetitionNum, setrepetitionNum] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
 
-  useEffect(() => getRepetitions(loginUser?.id, exerciseType), [createMessage]);
+  useEffect(
+    () => getRepetitions(loginUser?.id, exerciseType),
+    [createMessage, deleteMessage]
+  );
 
   const onChangeExerciseDate = (e: ChangeEvent<HTMLInputElement>) =>
     setExerciseDate(new Date(e.target.value));
@@ -41,12 +46,18 @@ export const Repetitions: FC = memo(() => {
       exercise_date: exerciseDate,
     });
   };
+  const onClickDeleteRepetition = (id: number) => {
+    const result = window.confirm("削除しますか？");
+    if (result) {
+      deleteRepetition(id);
+    }
+  };
 
   useEffect(() => getExercises(loginUser?.id), []);
 
   return (
     <>
-      <p>各項目を選択してください</p>
+      <h2>記録ページ</h2>
       <span>筋トレ日</span>
       <input
         type="date"
@@ -60,10 +71,10 @@ export const Repetitions: FC = memo(() => {
       <span>種目</span>
       <select onChange={onChangeExerciseType}>
         <option value="">種目を選択</option>
-        {exercises.map((e) => (
-          <option key={e.id} value={e.id}>
+        {exercises.map((exercise) => (
+          <option key={exercise.id} value={exercise.id}>
             <>
-              （{ExerciseTypeTranslation(e.exercise_type)}）{e.name}
+              {ExerciseTypeTranslation(exercise.exercise_type)}：{exercise.name}
             </>
           </option>
         ))}
@@ -95,12 +106,22 @@ export const Repetitions: FC = memo(() => {
       </button>
       <p>履歴</p>
       <ul>
-        {repetitions.map((e) => (
-          <li key={e.id}>
-            <>
-              {e.exercise_date}　{e.weight}kg　{e.repetition_num}回
-            </>
-          </li>
+        {repetitions.map((repetition) => (
+          <>
+            <li key={repetition.id}>
+              <>
+                {repetition.exercise_date}　{repetition.weight}kg　
+                {repetition.repetition_num}回
+              </>
+              　
+              <button
+                onClick={() => onClickDeleteRepetition(repetition.id)}
+                disabled={loading}
+              >
+                削除
+              </button>
+            </li>
+          </>
         ))}
       </ul>
     </>
