@@ -9,6 +9,13 @@ export type Repetition = {
   updated_at: Date;
 };
 
+export type DayRepetitions = {
+  id: number;
+  exercise_name: string;
+  repetition_num: number;
+  weight: number;
+};
+
 export type CreateRepetition = {
   user_id: number | undefined;
   exercise_id: number;

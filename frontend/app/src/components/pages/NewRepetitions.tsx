@@ -7,7 +7,7 @@ import { useRepetitions } from "../../hooks/useRepetitions";
 import { ExerciseTypeTranslation } from "../templates/ExerciseTypes";
 import { useDeleteRepetition } from "../../hooks/useDeleteRepetition";
 
-export const Repetitions: FC = memo(() => {
+export const NewRepetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
   console.log(loginUser);
   const { createRepetition, loading, createMessage } = useCreateRepetition();
@@ -15,9 +15,7 @@ export const Repetitions: FC = memo(() => {
   const { getRepetitions, repetitions } = useRepetitions();
   const { deleteRepetition, deleteMessage } = useDeleteRepetition();
 
-  const date = new Date();
-  date.setTime(date.getTime() + 1000 * 60 * 60 * 9); // JSTに変換
-  const [exerciseDate, setExerciseDate] = useState<Date>(date);
+  const [exerciseDate, setExerciseDate] = useState<Date>(new Date());
   const [exerciseType, setExerciseType] = useState<number>(0);
   const [repetitionNum, setrepetitionNum] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
@@ -64,7 +62,7 @@ export const Repetitions: FC = memo(() => {
         value={`${exerciseDate.getFullYear()}-${(
           "00" +
           (exerciseDate.getMonth() + 1)
-        ).slice(-2)}-${exerciseDate.getDate()}`}
+        ).slice(-2)}-${("00" + exerciseDate.getDate()).slice(-2)}`}
         onChange={onChangeExerciseDate}
       ></input>
       <br />

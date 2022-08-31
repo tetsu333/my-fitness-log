@@ -1,5 +1,18 @@
 class Api::V1::RepetitionsController < ApplicationController
   def index
+    repetitions = Repetition.where(user_id: params[:user_id], exercise_date: params[:exercise_date]).order(exercise_id: :ASC, created_at: :ASC)
+    data = repetitions.map do |repetition|
+      {
+        id: repetition.id,
+        exercise_name: repetition.exercise.name,
+        repetition_num: repetition.repetition_num,
+        weight: repetition.weight
+      }
+    end
+    render json: data, status: :ok
+  end
+
+  def new
     render json: Repetition.where(user_id: params[:user_id], exercise_id: params[:exercise_id]).order(exercise_date: :DESC, created_at: :DESC).limit(30), status: :ok
   end
 

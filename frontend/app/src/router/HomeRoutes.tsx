@@ -1,6 +1,6 @@
 import { Home } from "../components/pages/Home";
 import { Exercises } from "../components/pages/Exercises";
-import { Repetitions } from "../components/pages/Repetitions";
+import { NewRepetitions } from "../components/pages/NewRepetitions";
 import { Page404 } from "../components/pages/Page404";
 
 export const homeRoutes = [
@@ -15,9 +15,9 @@ export const homeRoutes = [
     children: <Exercises />,
   },
   {
-    path: "/repetitions",
+    path: "/repetitions/new",
     exact: false,
-    children: <Repetitions />,
+    children: <NewRepetitions />,
   },
   {
     path: "*",
