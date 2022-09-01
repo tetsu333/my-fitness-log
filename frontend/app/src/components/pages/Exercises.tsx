@@ -1,13 +1,15 @@
-import { memo, FC, useEffect, useState, ChangeEvent } from "react";
+import { memo, FC, useEffect, useState, ChangeEvent, useCallback } from "react";
 
 import { useLoginRequired } from "../../hooks/useLoginUser";
 import { useAllExercises } from "../../hooks/useAllExercises";
 import { Exercise } from "../../types/api/exercise";
 import { ExerciseTypes } from "../templates/ExerciseTypes";
 import { useCreateExercise } from "../../hooks/useCreateExercise";
+import { useHistory } from "react-router-dom";
 
 export const Exercises: FC = memo(() => {
   const loginUser = useLoginRequired();
+  const history = useHistory();
   const { createExercise, createMessage } = useCreateExercise();
   const { getExercises, loading, exercises } = useAllExercises();
   const [exerciseType, setExerciseType] = useState<string>("");
@@ -28,6 +30,15 @@ export const Exercises: FC = memo(() => {
     setExerciseType("");
     setExerciseName("");
   };
+  const onClickEdit = useCallback(
+    (exercise_id: number, name: string, exercise_type: string | number) =>
+      history.push("/home/repetitions/edit", {
+        exercise_id: exercise_id,
+        name: name,
+        exercise_type: exercise_type,
+      }),
+    [history]
+  );
 
   let chest: Array<Exercise> = [];
   let back: Array<Exercise> = [];
@@ -57,7 +68,7 @@ export const Exercises: FC = memo(() => {
         <p>Laoding...</p>
       ) : (
         <>
-          <h2>種目一覧</h2>
+          <p>種目を登録する</p>
           <select onChange={onChangeExerciseType}>
             <option value="">部位を選択</option>
             {ExerciseTypes.map((typeName) => (
@@ -76,42 +87,96 @@ export const Exercises: FC = memo(() => {
             onClick={onClickCreateExercise}
             disabled={exerciseType == "" || exerciseName == "" || loading}
           >
-            追加
+            登録
           </button>
           <h3>胸部</h3>
           <ul>
             {chest.map((e) => (
-              <li key={e.id}>{e.name}</li>
+              <>
+                <li key={e.id}>
+                  {e.name}{" "}
+                  <button
+                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                  >
+                    編集
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
           <h3>背部</h3>
           <ul>
             {back.map((e) => (
-              <li key={e.id}>{e.name}</li>
+              <>
+                <li key={e.id}>
+                  {e.name}{" "}
+                  <button
+                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                  >
+                    編集
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
           <h3>脚部</h3>
           <ul>
             {leg.map((e) => (
-              <li key={e.id}>{e.name}</li>
+              <>
+                <li key={e.id}>
+                  {e.name}{" "}
+                  <button
+                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                  >
+                    編集
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
           <h3>肩部</h3>
           <ul>
             {shoulder.map((e) => (
-              <li key={e.id}>{e.name}</li>
+              <>
+                <li key={e.id}>
+                  {e.name}{" "}
+                  <button
+                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                  >
+                    編集
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
           <h3>腕部</h3>
           <ul>
             {arm.map((e) => (
-              <li key={e.id}>{e.name}</li>
+              <>
+                <li key={e.id}>
+                  {e.name}{" "}
+                  <button
+                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                  >
+                    編集
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
           <h3>腹部</h3>
           <ul>
             {abdominal.map((e) => (
-              <li key={e.id}>{e.name}</li>
+              <>
+                <li key={e.id}>
+                  {e.name}{" "}
+                  <button
+                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                  >
+                    編集
+                  </button>
+                </li>
+              </>
             ))}
           </ul>
         </>

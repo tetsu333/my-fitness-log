@@ -12,3 +12,9 @@ export type CreateExercise = {
   name: string;
   exercise_type: number | string;
 };
+
+export type UpdateExercise = {
+  exercise_id: number;
+  name: string;
+  exercise_type: string | number;
+};

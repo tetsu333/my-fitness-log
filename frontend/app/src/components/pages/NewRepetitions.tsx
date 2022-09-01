@@ -15,7 +15,9 @@ export const NewRepetitions: FC = memo(() => {
   const { getRepetitions, repetitions } = useRepetitions();
   const { deleteRepetition, deleteMessage } = useDeleteRepetition();
 
-  const [exerciseDate, setExerciseDate] = useState<Date>(new Date());
+  const date = new Date();
+  date.setTime(date.getTime() + 1000 * 60 * 60 * 9); // JSTに変換
+  const [exerciseDate, setExerciseDate] = useState<Date>(date);
   const [exerciseType, setExerciseType] = useState<number>(0);
   const [repetitionNum, setrepetitionNum] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
