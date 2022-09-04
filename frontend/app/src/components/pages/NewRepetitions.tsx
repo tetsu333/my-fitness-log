@@ -107,8 +107,8 @@ export const NewRepetitions: FC = memo(() => {
       <p>履歴</p>
       <ul>
         {repetitions.map((repetition) => (
-          <>
-            <li key={repetition.id}>
+          <div key={repetition.id}>
+            <li>
               <>
                 {repetition.exercise_date}　{repetition.weight}kg　
                 {repetition.repetition_num}回
@@ -121,7 +121,7 @@ export const NewRepetitions: FC = memo(() => {
                 削除
               </button>
             </li>
-          </>
+          </div>
         ))}
       </ul>
     </>

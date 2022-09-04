@@ -31,14 +31,13 @@ export const EditRepetitions: FC = memo(() => {
   return (
     <>
       <p>更新ページ</p>
-      <select onChange={onChangeExerciseType}>
+      <select
+        onChange={onChangeExerciseType}
+        defaultValue={state.exercise_type}
+      >
         <option value="">部位を選択</option>
         {ExerciseTypes.map((typeName) => (
-          <option
-            value={typeName.en}
-            key={typeName.en}
-            selected={typeName.en == state.exercise_type && true}
-          >
+          <option value={typeName.en} key={typeName.en}>
             {typeName.ja}
           </option>
         ))}

@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { useLoginRequired } from "../../hooks/useLoginUser";
 import { useAllRepetitionDates } from "../../hooks/useAllRepetitionDates";
 import { useDayRepetitions } from "../../hooks/useDayRepetitions";
+import { DayRepetitionList } from "../molecules/DayRepetitionList";
+import { RepetitionDateSelect } from "../molecules/RepetitionDateSelect";
 
 export const Home: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -26,28 +28,11 @@ export const Home: FC = memo(() => {
       <p>{loginUser?.name}の筋トレノート</p>
       <button onClick={onClickNewRepetitions}>記録する</button>
       <br />
-      <span>記録表示</span>
-      <br />
-      <select onChange={onChangeRepetitionDate}>
-        <option value="">筋トレ日を選択</option>
-        {repetitionDates.map((date, index) => (
-          <option key={index} value={String(date)}>
-            {String(date)}
-          </option>
-        ))}
-      </select>
-      <ul>
-        {dayRepetitions.map((dayRepetition) => (
-          <>
-            <li key={dayRepetition.id}>
-              <>
-                {dayRepetition.exercise_name}　{dayRepetition.weight}kg　
-                {dayRepetition.repetition_num}回
-              </>
-            </li>
-          </>
-        ))}
-      </ul>
+      <RepetitionDateSelect
+        repetitionDates={repetitionDates}
+        onChangeRepetitionDate={onChangeRepetitionDate}
+      />
+      <DayRepetitionList dayRepetitions={dayRepetitions} />
     </>
   );
 });

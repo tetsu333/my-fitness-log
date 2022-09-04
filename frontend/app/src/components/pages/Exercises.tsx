@@ -68,7 +68,7 @@ export const Exercises: FC = memo(() => {
         <p>Laoding...</p>
       ) : (
         <>
-          <p>種目を登録する</p>
+          <p>種目を登録</p>
           <select onChange={onChangeExerciseType}>
             <option value="">部位を選択</option>
             {ExerciseTypes.map((typeName) => (
@@ -92,8 +92,8 @@ export const Exercises: FC = memo(() => {
           <h3>胸部</h3>
           <ul>
             {chest.map((e) => (
-              <>
-                <li key={e.id}>
+              <div key={e.id}>
+                <li>
                   {e.name}{" "}
                   <button
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
@@ -101,14 +101,14 @@ export const Exercises: FC = memo(() => {
                     編集
                   </button>
                 </li>
-              </>
+              </div>
             ))}
           </ul>
           <h3>背部</h3>
           <ul>
             {back.map((e) => (
-              <>
-                <li key={e.id}>
+              <div key={e.id}>
+                <li>
                   {e.name}{" "}
                   <button
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
@@ -116,14 +116,14 @@ export const Exercises: FC = memo(() => {
                     編集
                   </button>
                 </li>
-              </>
+              </div>
             ))}
           </ul>
           <h3>脚部</h3>
           <ul>
             {leg.map((e) => (
-              <>
-                <li key={e.id}>
+              <div key={e.id}>
+                <li>
                   {e.name}{" "}
                   <button
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
@@ -131,14 +131,14 @@ export const Exercises: FC = memo(() => {
                     編集
                   </button>
                 </li>
-              </>
+              </div>
             ))}
           </ul>
           <h3>肩部</h3>
           <ul>
             {shoulder.map((e) => (
-              <>
-                <li key={e.id}>
+              <div key={e.id}>
+                <li>
                   {e.name}{" "}
                   <button
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
@@ -146,14 +146,14 @@ export const Exercises: FC = memo(() => {
                     編集
                   </button>
                 </li>
-              </>
+              </div>
             ))}
           </ul>
           <h3>腕部</h3>
           <ul>
             {arm.map((e) => (
-              <>
-                <li key={e.id}>
+              <div key={e.id}>
+                <li>
                   {e.name}{" "}
                   <button
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
@@ -161,14 +161,14 @@ export const Exercises: FC = memo(() => {
                     編集
                   </button>
                 </li>
-              </>
+              </div>
             ))}
           </ul>
           <h3>腹部</h3>
           <ul>
             {abdominal.map((e) => (
-              <>
-                <li key={e.id}>
+              <div key={e.id}>
+                <li>
                   {e.name}{" "}
                   <button
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
@@ -176,7 +176,7 @@ export const Exercises: FC = memo(() => {
                     編集
                   </button>
                 </li>
-              </>
+              </div>
             ))}
           </ul>
         </>
