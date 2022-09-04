@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { useLoginRequired } from "../../hooks/useLoginUser";
 import { UpdateExercise } from "../../types/api/exercise";
-import { ExerciseTypes } from "../templates/ExerciseTypes";
+import { ExerciseTypes } from "../../ExerciseTypes";
 import { useUpdateExercise } from "../../hooks/useUpdateExercise";
 
 export const EditRepetitions: FC = memo(() => {

@@ -4,7 +4,7 @@ import { useLoginRequired } from "../../hooks/useLoginUser";
 import { useCreateRepetition } from "../../hooks/useCreateRepetition";
 import { useAllExercises } from "../../hooks/useAllExercises";
 import { useRepetitions } from "../../hooks/useRepetitions";
-import { ExerciseTypeTranslation } from "../templates/ExerciseTypes";
+import { ExerciseTypeTranslation } from "../../ExerciseTypes";
 import { useDeleteRepetition } from "../../hooks/useDeleteRepetition";
 
 export const NewRepetitions: FC = memo(() => {

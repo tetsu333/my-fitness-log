@@ -6,6 +6,7 @@ import { useAllRepetitionDates } from "../../hooks/useAllRepetitionDates";
 import { useDayRepetitions } from "../../hooks/useDayRepetitions";
 import { DayRepetitionList } from "../molecules/DayRepetitionList";
 import { RepetitionDateSelect } from "../molecules/RepetitionDateSelect";
+import { EventButton } from "../atoms/button/EventButton";
 
 export const Home: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -26,11 +27,11 @@ export const Home: FC = memo(() => {
   return (
     <>
       <p>{loginUser?.name}の筋トレノート</p>
-      <button onClick={onClickNewRepetitions}>記録する</button>
+      <EventButton event={onClickNewRepetitions}>記録する</EventButton>
       <br />
       <RepetitionDateSelect
         repetitionDates={repetitionDates}
-        onChangeRepetitionDate={onChangeRepetitionDate}
+        onChange={onChangeRepetitionDate}
       />
       <DayRepetitionList dayRepetitions={dayRepetitions} />
     </>

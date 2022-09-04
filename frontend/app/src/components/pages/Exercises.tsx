@@ -3,7 +3,7 @@ import { memo, FC, useEffect, useState, ChangeEvent, useCallback } from "react";
 import { useLoginRequired } from "../../hooks/useLoginUser";
 import { useAllExercises } from "../../hooks/useAllExercises";
 import { Exercise } from "../../types/api/exercise";
-import { ExerciseTypes } from "../templates/ExerciseTypes";
+import { ExerciseTypes } from "../../ExerciseTypes";
 import { useCreateExercise } from "../../hooks/useCreateExercise";
 import { useHistory } from "react-router-dom";
 
