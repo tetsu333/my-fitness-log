@@ -11,7 +11,10 @@ export const useDayRepetitions = () => {
     (user_id: number | undefined, exercise_date: string) => {
       axios
         .get<Array<DayRepetitions>>(
-          `http://localhost:3001/api/v1/repetitions?user_id=${user_id}&exercise_date=${exercise_date}`
+          `http://localhost:3001/api/v1/repetitions?user_id=${user_id}&exercise_date=${exercise_date}`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           setDayRepetitions(res.data);

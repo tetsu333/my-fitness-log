@@ -5,7 +5,9 @@ export const useDeleteRepetition = () => {
   const [deleteMessage, setDeleteMessage] = useState<string>("");
   const deleteRepetition = useCallback((id: number) => {
     axios
-      .delete(`http://localhost:3001/api/v1/repetitions/${id}`)
+      .delete(`http://localhost:3001/api/v1/repetitions/${id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setDeleteMessage(res.data.message);
         alert("削除しました");

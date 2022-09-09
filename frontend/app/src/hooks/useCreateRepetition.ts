@@ -9,7 +9,9 @@ export const useCreateRepetition = () => {
   const createRepetition = useCallback((data: CreateRepetition) => {
     setLoading(true);
     axios
-      .post("http://localhost:3001/api/v1/repetitions", data)
+      .post("http://localhost:3001/api/v1/repetitions", data, {
+        withCredentials: true,
+      })
       .then((res) => {
         setCreateMessage(res.data.message);
         alert("登録しました");

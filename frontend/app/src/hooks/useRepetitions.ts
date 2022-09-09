@@ -9,7 +9,10 @@ export const useRepetitions = () => {
     (user_id: number | undefined, exercise_id: number) => {
       axios
         .get<Array<Repetition>>(
-          `http://localhost:3001/api/v1/repetitions/new?user_id=${user_id}&exercise_id=${exercise_id}`
+          `http://localhost:3001/api/v1/repetitions/new?user_id=${user_id}&exercise_id=${exercise_id}`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           setRepetitions(res.data);

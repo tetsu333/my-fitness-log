@@ -16,7 +16,9 @@ export const useAuth = () => {
       setLoading(true);
 
       axios
-        .post<User>("http://localhost:3001/api/v1/login", data)
+        .post<User>("http://localhost:3001/api/v1/login", data, {
+          withCredentials: true,
+        })
         .then((res) => {
           if (res.data) {
             setLoginUser(res.data);
@@ -37,7 +39,9 @@ export const useAuth = () => {
 
   const logout = useCallback(() => {
     axios
-      .delete("http://localhost:3001/api/v1/logout")
+      .delete("http://localhost:3001/api/v1/logout", {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res);
         alert("ログアウトしました");

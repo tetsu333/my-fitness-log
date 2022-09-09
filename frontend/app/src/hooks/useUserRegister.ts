@@ -16,7 +16,9 @@ export const useUserRegister = () => {
       setLoading(true);
 
       axios
-        .post<User>("http://localhost:3001/api/v1/users", data)
+        .post<User>("http://localhost:3001/api/v1/users", data, {
+          withCredentials: true,
+        })
         .then((res) => {
           if (res.data) {
             setLoginUser(res.data);

@@ -10,7 +10,10 @@ export const useAllExercises = () => {
     setLoading(true);
     axios
       .get<Array<Exercise>>(
-        `http://localhost:3001/api/v1/exercises?user_id=${user_id}`
+        `http://localhost:3001/api/v1/exercises?user_id=${user_id}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         setExercises(res.data);
