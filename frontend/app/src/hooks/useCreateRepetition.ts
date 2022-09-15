@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import axios from "axios";
 
 import { CreateRepetition } from "../types/api/repetitions";
+import { RootURL } from "../RequestTypes";
 
 export const useCreateRepetition = () => {
   const [createMessage, setCreateMessage] = useState<string>("");
@@ -9,7 +10,7 @@ export const useCreateRepetition = () => {
   const createRepetition = useCallback((data: CreateRepetition) => {
     setLoading(true);
     axios
-      .post("http://localhost:3001/api/v1/repetitions", data, {
+      .post(`${RootURL}api/v1/repetitions`, data, {
         withCredentials: true,
       })
       .then((res) => {

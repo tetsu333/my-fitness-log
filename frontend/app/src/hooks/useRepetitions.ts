@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import axios from "axios";
 
 import { Repetition } from "../types/api/repetitions";
+import { RootURL } from "../RequestTypes";
 
 export const useRepetitions = () => {
   const [repetitions, setRepetitions] = useState<Array<Repetition>>([]);
@@ -9,7 +10,7 @@ export const useRepetitions = () => {
     (user_id: number | undefined, exercise_id: number) => {
       axios
         .get<Array<Repetition>>(
-          `http://localhost:3001/api/v1/repetitions/new?user_id=${user_id}&exercise_id=${exercise_id}`,
+          `${RootURL}api/v1/repetitions/new?user_id=${user_id}&exercise_id=${exercise_id}`,
           {
             withCredentials: true,
           }

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Login } from "../types/api/login";
 import { User } from "../types/api/user";
 import { useLoginUser } from "./useLoginUser";
+import { RootURL } from "../RequestTypes";
 
 export const useAuth = () => {
   const history = useHistory();
@@ -16,7 +17,7 @@ export const useAuth = () => {
       setLoading(true);
 
       axios
-        .post<User>("http://localhost:3001/api/v1/login", data, {
+        .post<User>(`${RootURL}api/v1/login`, data, {
           withCredentials: true,
         })
         .then((res) => {
@@ -39,7 +40,7 @@ export const useAuth = () => {
 
   const logout = useCallback(() => {
     axios
-      .delete("http://localhost:3001/api/v1/logout", {
+      .delete(`${RootURL}api/v1/logout`, {
         withCredentials: true,
       })
       .then((res) => {

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { User } from "../types/api/user";
 import { UserRegister } from "../types/api/user";
 import { useLoginUser } from "./useLoginUser";
+import { RootURL } from "../RequestTypes";
 
 export const useUserRegister = () => {
   const history = useHistory();
@@ -16,7 +17,7 @@ export const useUserRegister = () => {
       setLoading(true);
 
       axios
-        .post<User>("http://localhost:3001/api/v1/users", data, {
+        .post<User>(`${RootURL}api/v1/users`, data, {
           withCredentials: true,
         })
         .then((res) => {
