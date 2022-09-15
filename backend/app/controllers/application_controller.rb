@@ -13,6 +13,9 @@ class ApplicationController < ActionController::API
   end
 
   def login_required
+    logger.debug("---------")
+    logger.debug(session[:user_id])
+    logger.debug("=========")
     render json: {message: "認証エラー"}, status: :unauthorized unless current_user
   end
 end
