@@ -13,9 +13,11 @@ class ApplicationController < ActionController::API
   end
 
   def login_required
-    logger.error("---------")
-    logger.error(session[:user_id])
-    logger.error("=========")
+    logger.info("---------")
+    logger.info(session[:user_id])
+    logger.info("-")
+    logger.info(request.cookies)
+    logger.info("=========")
     render json: {message: "認証エラー"}, status: :unauthorized unless current_user
   end
 end
