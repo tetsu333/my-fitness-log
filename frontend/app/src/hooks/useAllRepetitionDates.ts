@@ -15,8 +15,8 @@ export const useAllRepetitionDates = () => {
           res.headers["x-csrf-token"];
         setRepetitionDates(res.data);
       })
-      .catch((res) => {
-        alert("データ取得に失敗しました!");
+      .catch(() => {
+        alert("データ取得に失敗しました");
       });
   }, []);
   return { getRepetitionDates, repetitionDates };
