@@ -16,7 +16,6 @@ export const useAllRepetitionDates = () => {
         setRepetitionDates(res.data);
       })
       .catch((res) => {
-        console.log(res.header);
         alert("データ取得に失敗しました!");
       });
   }, []);

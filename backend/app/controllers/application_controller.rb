@@ -21,8 +21,5 @@ class ApplicationController < ActionController::API
 
   def set_csrf_token_header
     response.set_header('X-CSRF-Token', form_authenticity_token)
-    logger.info("---------")
-    logger.error(form_authenticity_token)
-    logger.error("=========")
   end
 end
