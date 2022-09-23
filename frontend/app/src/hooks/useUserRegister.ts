@@ -21,6 +21,8 @@ export const useUserRegister = () => {
           withCredentials: true,
         })
         .then((res) => {
+          axios.defaults.headers.common["X-CSRF-Token"] =
+            res.headers["x-csrf-token"];
           if (res.data) {
             setLoginUser(res.data);
             alert("ユーザーを作成しました");

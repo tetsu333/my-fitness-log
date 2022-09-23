@@ -16,6 +16,8 @@ export const useRepetitions = () => {
           }
         )
         .then((res) => {
+          axios.defaults.headers.common["X-CSRF-Token"] =
+            res.headers["x-csrf-token"];
           setRepetitions(res.data);
         })
         .catch(() => {

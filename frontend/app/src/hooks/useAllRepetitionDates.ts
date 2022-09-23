@@ -11,6 +11,8 @@ export const useAllRepetitionDates = () => {
         withCredentials: true,
       })
       .then((res) => {
+        axios.defaults.headers.common["X-CSRF-Token"] =
+          res.headers["x-csrf-token"];
         setRepetitionDates(res.data);
       })
       .catch(() => {

@@ -21,6 +21,8 @@ export const useAuth = () => {
           withCredentials: true,
         })
         .then((res) => {
+          axios.defaults.headers.common["X-CSRF-Token"] =
+            res.headers["x-csrf-token"];
           if (res.data) {
             setLoginUser(res.data);
             alert("ログインしました");
@@ -44,7 +46,8 @@ export const useAuth = () => {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res);
+        axios.defaults.headers.common["X-CSRF-Token"] =
+          res.headers["x-csrf-token"];
         alert("ログアウトしました");
         history.push("/");
       })

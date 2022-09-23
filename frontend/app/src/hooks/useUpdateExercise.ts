@@ -13,7 +13,9 @@ export const useUpdateExercise = () => {
       .put(`${RootURL}api/v1/exercises/${data.exercise_id}`, data, {
         withCredentials: true,
       })
-      .then(() => {
+      .then((res) => {
+        axios.defaults.headers.common["X-CSRF-Token"] =
+          res.headers["x-csrf-token"];
         alert("更新しました");
         goBack();
       })

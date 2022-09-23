@@ -14,6 +14,8 @@ export const useAllExercises = () => {
         withCredentials: true,
       })
       .then((res) => {
+        axios.defaults.headers.common["X-CSRF-Token"] =
+          res.headers["x-csrf-token"];
         setExercises(res.data);
         setLoading(false);
       })

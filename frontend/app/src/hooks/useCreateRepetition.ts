@@ -14,6 +14,8 @@ export const useCreateRepetition = () => {
         withCredentials: true,
       })
       .then((res) => {
+        axios.defaults.headers.common["X-CSRF-Token"] =
+          res.headers["x-csrf-token"];
         setCreateMessage(res.data.message);
         alert("登録しました");
         setLoading(false);

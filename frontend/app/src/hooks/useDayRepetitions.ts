@@ -18,6 +18,8 @@ export const useDayRepetitions = () => {
           }
         )
         .then((res) => {
+          axios.defaults.headers.common["X-CSRF-Token"] =
+            res.headers["x-csrf-token"];
           setDayRepetitions(res.data);
         })
         .catch(() => {

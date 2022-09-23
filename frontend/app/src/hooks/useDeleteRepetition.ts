@@ -11,6 +11,8 @@ export const useDeleteRepetition = () => {
         withCredentials: true,
       })
       .then((res) => {
+        axios.defaults.headers.common["X-CSRF-Token"] =
+          res.headers["x-csrf-token"];
         setDeleteMessage(res.data.message);
         alert("削除しました");
       })

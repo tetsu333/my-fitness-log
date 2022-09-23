@@ -12,6 +12,8 @@ export const useCreateExercise = () => {
         withCredentials: true,
       })
       .then((res) => {
+        axios.defaults.headers.common["X-CSRF-Token"] =
+          res.headers["x-csrf-token"];
         setCreateMessage(res.data.message);
         alert("種目を追加しました");
       })
