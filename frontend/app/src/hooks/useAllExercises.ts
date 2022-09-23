@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import axios from "axios";
 
+import axios from "../axios";
 import { Exercise } from "../types/api/exercise";
 import { RootURL } from "../RequestTypes";
 
@@ -9,13 +9,12 @@ export const useAllExercises = () => {
   const [exercises, setExercises] = useState<Array<Exercise>>([]);
   const getExercises = useCallback((user_id: number | undefined) => {
     setLoading(true);
+    axios.get(`${RootURL}api/v1/sessions`);
     axios
       .get<Array<Exercise>>(`${RootURL}api/v1/exercises?user_id=${user_id}`, {
         withCredentials: true,
       })
       .then((res) => {
-        axios.defaults.headers.common["X-CSRF-Token"] =
-          res.headers["x-csrf-token"];
         setExercises(res.data);
         setLoading(false);
       })

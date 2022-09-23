@@ -15,14 +15,11 @@ export const useAuth = () => {
   const login = useCallback(
     (data: Login) => {
       setLoading(true);
-
       axios
         .post<User>(`${RootURL}api/v1/login`, data, {
           withCredentials: true,
         })
         .then((res) => {
-          axios.defaults.headers.common["X-CSRF-Token"] =
-            res.headers["x-csrf-token"];
           if (res.data) {
             setLoginUser(res.data);
             alert("ログインしました");
@@ -45,9 +42,7 @@ export const useAuth = () => {
       .delete(`${RootURL}api/v1/logout`, {
         withCredentials: true,
       })
-      .then((res) => {
-        axios.defaults.headers.common["X-CSRF-Token"] =
-          res.headers["x-csrf-token"];
+      .then(() => {
         alert("ログアウトしました");
         history.push("/");
       })

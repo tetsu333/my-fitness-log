@@ -1,18 +1,17 @@
 import { useCallback, useState } from "react";
-import axios from "axios";
 
+import axios from "../axios";
 import { RootURL } from "../RequestTypes";
 
 export const useDeleteRepetition = () => {
   const [deleteMessage, setDeleteMessage] = useState<string>("");
   const deleteRepetition = useCallback((id: number) => {
+    axios.get(`${RootURL}api/v1/sessions`);
     axios
       .delete(`${RootURL}api/v1/repetitions/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
-        axios.defaults.headers.common["X-CSRF-Token"] =
-          res.headers["x-csrf-token"];
         setDeleteMessage(res.data.message);
         alert("削除しました");
       })

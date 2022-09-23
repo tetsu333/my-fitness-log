@@ -15,14 +15,12 @@ export const useUserRegister = () => {
   const register = useCallback(
     (data: UserRegister) => {
       setLoading(true);
-
+      axios.get(`${RootURL}api/v1/sessions`);
       axios
         .post<User>(`${RootURL}api/v1/users`, data, {
           withCredentials: true,
         })
         .then((res) => {
-          axios.defaults.headers.common["X-CSRF-Token"] =
-            res.headers["x-csrf-token"];
           if (res.data) {
             setLoginUser(res.data);
             alert("ユーザーを作成しました");

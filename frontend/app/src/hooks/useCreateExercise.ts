@@ -1,19 +1,18 @@
 import { useCallback, useState } from "react";
-import axios from "axios";
 
+import axios from "../axios";
 import { CreateExercise } from "../types/api/exercise";
 import { RootURL } from "../RequestTypes";
 
 export const useCreateExercise = () => {
   const [createMessage, setCreateMessage] = useState<string>("");
   const createExercise = useCallback((data: CreateExercise) => {
+    axios.get(`${RootURL}api/v1/sessions`);
     axios
       .post(`${RootURL}/api/v1/exercises`, data, {
         withCredentials: true,
       })
       .then((res) => {
-        axios.defaults.headers.common["X-CSRF-Token"] =
-          res.headers["x-csrf-token"];
         setCreateMessage(res.data.message);
         alert("種目を追加しました");
       })

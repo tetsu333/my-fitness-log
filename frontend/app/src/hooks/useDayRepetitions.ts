@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import axios from "axios";
 
+import axios from "../axios";
 import { DayRepetitions } from "../types/api/repetitions";
 import { RootURL } from "../RequestTypes";
 
@@ -10,6 +10,7 @@ export const useDayRepetitions = () => {
   );
   const getDayRepetitions = useCallback(
     (user_id: number | undefined, exercise_date: string) => {
+      axios.get(`${RootURL}api/v1/sessions`);
       axios
         .get<Array<DayRepetitions>>(
           `${RootURL}api/v1/repetitions?user_id=${user_id}&exercise_date=${exercise_date}`,
@@ -18,8 +19,6 @@ export const useDayRepetitions = () => {
           }
         )
         .then((res) => {
-          axios.defaults.headers.common["X-CSRF-Token"] =
-            res.headers["x-csrf-token"];
           setDayRepetitions(res.data);
         })
         .catch(() => {

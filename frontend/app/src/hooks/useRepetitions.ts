@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import axios from "axios";
 
+import axios from "../axios";
 import { Repetition } from "../types/api/repetitions";
 import { RootURL } from "../RequestTypes";
 
@@ -8,6 +8,7 @@ export const useRepetitions = () => {
   const [repetitions, setRepetitions] = useState<Array<Repetition>>([]);
   const getRepetitions = useCallback(
     (user_id: number | undefined, exercise_id: number) => {
+      axios.get(`${RootURL}api/v1/sessions`);
       axios
         .get<Array<Repetition>>(
           `${RootURL}api/v1/repetitions/new?user_id=${user_id}&exercise_id=${exercise_id}`,
@@ -16,8 +17,6 @@ export const useRepetitions = () => {
           }
         )
         .then((res) => {
-          axios.defaults.headers.common["X-CSRF-Token"] =
-            res.headers["x-csrf-token"];
           setRepetitions(res.data);
         })
         .catch(() => {

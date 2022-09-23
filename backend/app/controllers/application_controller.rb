@@ -2,9 +2,8 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
   include ActionController::Helpers
   include ActionController::RequestForgeryProtection
-  
+
   helper_method :current_user, :user_signed_in?
-  before_action :set_csrf_token_header
   before_action :login_required
 
   def current_user
@@ -19,7 +18,10 @@ class ApplicationController < ActionController::API
     render json: {message: "認証エラー"}, status: :unauthorized unless current_user
   end
 
-  def set_csrf_token_header
-    response.set_header('X-CSRF-Token', form_authenticity_token)
+  def set_csrf_token
+    cookies['CSRF-TOKEN'] = {
+      domain: 'my-fitness-log.jp',
+      value: form_authenticity_token
+    }
   end
 end

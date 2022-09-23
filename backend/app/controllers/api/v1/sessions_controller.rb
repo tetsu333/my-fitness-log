@@ -17,6 +17,11 @@ class Api::V1::SessionsController < ApplicationController
     render json: {message: "ログアウトしました"}, status: :ok
   end
 
+  def show
+    set_csrf_token
+    render json: {message: "set_csrf_token"}, status: :ok
+  end
+
   private
     def session_params
       params.require(:session).permit(:email, :password)
