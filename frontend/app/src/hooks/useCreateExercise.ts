@@ -7,7 +7,6 @@ import { RootURL } from "../RequestTypes";
 export const useCreateExercise = () => {
   const [createMessage, setCreateMessage] = useState<string>("");
   const createExercise = useCallback((data: CreateExercise) => {
-    axios.get(`${RootURL}api/v1/sessions`);
     axios
       .post(`${RootURL}/api/v1/exercises`, data, {
         withCredentials: true,

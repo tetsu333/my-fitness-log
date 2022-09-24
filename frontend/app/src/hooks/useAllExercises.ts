@@ -9,7 +9,6 @@ export const useAllExercises = () => {
   const [exercises, setExercises] = useState<Array<Exercise>>([]);
   const getExercises = useCallback((user_id: number | undefined) => {
     setLoading(true);
-    axios.get(`${RootURL}api/v1/sessions`);
     axios
       .get<Array<Exercise>>(`${RootURL}api/v1/exercises?user_id=${user_id}`, {
         withCredentials: true,

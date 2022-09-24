@@ -15,7 +15,6 @@ export const useUserRegister = () => {
   const register = useCallback(
     (data: UserRegister) => {
       setLoading(true);
-      axios.get(`${RootURL}api/v1/sessions`);
       axios
         .post<User>(`${RootURL}api/v1/users`, data, {
           withCredentials: true,

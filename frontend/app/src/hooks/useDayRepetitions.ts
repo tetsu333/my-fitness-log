@@ -10,7 +10,6 @@ export const useDayRepetitions = () => {
   );
   const getDayRepetitions = useCallback(
     (user_id: number | undefined, exercise_date: string) => {
-      axios.get(`${RootURL}api/v1/sessions`);
       axios
         .get<Array<DayRepetitions>>(
           `${RootURL}api/v1/repetitions?user_id=${user_id}&exercise_date=${exercise_date}`,

@@ -6,7 +6,6 @@ import { RootURL } from "../RequestTypes";
 export const useDeleteRepetition = () => {
   const [deleteMessage, setDeleteMessage] = useState<string>("");
   const deleteRepetition = useCallback((id: number) => {
-    axios.get(`${RootURL}api/v1/sessions`);
     axios
       .delete(`${RootURL}api/v1/repetitions/${id}`, {
         withCredentials: true,
