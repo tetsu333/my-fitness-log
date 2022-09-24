@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < ApplicationController
   skip_before_action :login_required
+  before_action :authenticate
 
   def create
     user = User.find_by(email: session_params[:email])
@@ -18,10 +19,10 @@ class Api::V1::SessionsController < ApplicationController
     render json: {message: "ログアウトしました"}, status: :ok
   end
 
-  def show
-    set_csrf_token
-    render json: {message: "set_csrf_token"}, status: :ok
-  end
+  # def show
+  #   set_csrf_token
+  #   render json: {message: "set_csrf_token"}, status: :ok
+  # end
 
   private
     def session_params
