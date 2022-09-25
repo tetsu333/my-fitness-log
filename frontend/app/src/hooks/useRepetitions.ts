@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
+import axios from "axios";
 
-import axios from "../axios";
 import { Repetition } from "../types/api/repetitions";
 import { RootURL } from "../RequestTypes";
 

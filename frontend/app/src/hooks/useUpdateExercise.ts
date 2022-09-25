@@ -1,6 +1,6 @@
 import { useCallback } from "react";
+import axios from "axios";
 
-import axios from "../axios";
 import { UpdateExercise } from "../types/api/exercise";
 import { useHistory } from "react-router-dom";
 import { RootURL } from "../RequestTypes";

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
+import axios from "axios";
 
-import axios from "../axios";
 import { RootURL } from "../RequestTypes";
 
 export const useDeleteRepetition = () => {
