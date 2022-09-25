@@ -111,4 +111,5 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   config.action_dispatch.cookies_same_site_protection = :none
+  config.session_store(secure: Rails.env.production?)
 end
