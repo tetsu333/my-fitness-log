@@ -3,7 +3,6 @@ class ApplicationController < ActionController::API
   include ActionController::Helpers
   include ActionController::RequestForgeryProtection
 
-  protect_from_forgery with: :exception
   helper_method :current_user, :user_signed_in?
   before_action :login_required
 
