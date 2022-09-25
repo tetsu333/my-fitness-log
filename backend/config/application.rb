@@ -42,7 +42,5 @@ module Myapp
     config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware
 
     config.i18n.default_locale = :ja
-
-    config.hosts << "my-fitness-log.jp"
   end
 end
