@@ -4,7 +4,11 @@ class Api::V1::SessionsController < ApplicationController
   def create
     user = User.find_by(email: session_params[:email])
     if user&.authenticate(session_params[:password])
-      session[:user_id] = user.id
+      # session[:user_id] = user.id
+      cookies.encrypted[:user_id] = {
+        value: user.id,
+        secure: true
+      }
       render json: user, status: :ok
     else
       render status: :unauthorized
