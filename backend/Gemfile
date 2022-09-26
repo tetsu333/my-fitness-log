@@ -28,6 +28,7 @@ gem 'ridgepole'
 gem 'rails-i18n'
 gem 'pry-rails'
 gem 'enum_help'
+gem 'rails_same_site_cookie'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,7 +43,6 @@ end
 
 group :production do
   gem 'unicorn'
-  gem 'rails_same_site_cookie'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
