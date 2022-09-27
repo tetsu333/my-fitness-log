@@ -44,6 +44,7 @@ export const Login: FC = memo(() => {
       >
         ログイン
       </button>
+      <p>{window.navigator.userAgent}</p>
       <h2 onClick={onClickUserRegister}>新規ユーザー登録はこちら</h2>
     </>
   );
