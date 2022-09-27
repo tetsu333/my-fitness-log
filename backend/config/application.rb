@@ -42,6 +42,5 @@ module Myapp
     config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware
 
     config.i18n.default_locale = :ja
-    config.action_controller.default_protect_from_forgery = false
   end
 end
