@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::Cookies
   include ActionController::Helpers
+  include ActionController::RequestForgeryProtection
 
   helper_method :current_user, :user_signed_in?
   before_action :login_required
