@@ -16,7 +16,6 @@ import Box from "@mui/material/Box";
 
 export const Home: FC = memo(() => {
   const loginUser = useLoginRequired();
-  console.log(loginUser);
   const history = useHistory();
   const { getRepetitionDates, repetitionDates } = useAllRepetitionDates();
   const { getDayRepetitions, dayRepetitions } = useDayRepetitions();

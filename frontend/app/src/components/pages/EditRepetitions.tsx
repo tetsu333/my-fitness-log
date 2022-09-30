@@ -18,7 +18,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export const EditRepetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
-  console.log(loginUser);
   const location = useLocation();
   const state = location.state as UpdateExercise;
   const { updateExercise } = useUpdateExercise();
@@ -49,6 +48,7 @@ export const EditRepetitions: FC = memo(() => {
           labelId="select-label"
           label="部位を選択"
           onChange={onChangeExerciseType}
+          value={String(exerciseType)}
         >
           {ExerciseTypes.map((typeName) => (
             <MenuItem value={typeName.en} key={typeName.en}>

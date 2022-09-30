@@ -24,7 +24,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export const NewRepetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
-  console.log(loginUser);
   const { createRepetition, loading, createMessage } = useCreateRepetition();
   const { getExercises, exercises } = useAllExercises();
   const { getRepetitions, repetitions } = useRepetitions();
@@ -117,8 +116,6 @@ export const NewRepetitions: FC = memo(() => {
         id="outlined-basic"
         label="回数"
         variant="outlined"
-        // type="number"
-        // min="0"
         value={repetitionNum}
         onChange={onChangerepetitionNum}
       />
@@ -129,8 +126,6 @@ export const NewRepetitions: FC = memo(() => {
         id="outlined-basic"
         label="重量"
         variant="outlined"
-        // type="number"
-        // min="0"
         value={weight}
         onChange={onChangeWeight}
       />
