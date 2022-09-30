@@ -26,8 +26,11 @@ export const Home: FC = memo(() => {
 
   return (
     <>
-      <p>{loginUser?.name}の筋トレノート</p>
+      <h2>{loginUser?.name}の筋トレノート</h2>
       <EventButton event={onClickNewRepetitions}>記録する</EventButton>
+      <br />
+      <br />
+      <h3>記録表示</h3>
       <br />
       <RepetitionDateSelect
         repetitionDates={repetitionDates}

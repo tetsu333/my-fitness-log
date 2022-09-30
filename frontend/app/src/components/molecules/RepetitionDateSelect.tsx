@@ -6,8 +6,6 @@ export const RepetitionDateSelect: FC<{
 }> = memo(({ repetitionDates, onChange }) => {
   return (
     <>
-      <span>記録表示</span>
-      <br />
       <select onChange={onChange}>
         <option value="">筋トレ日を選択</option>
         {repetitionDates.map((date, index) => (

@@ -7,6 +7,21 @@ import { useRepetitions } from "../../hooks/useRepetitions";
 import { ExerciseTypeTranslation } from "../../ExerciseTypes";
 import { useDeleteRepetition } from "../../hooks/useDeleteRepetition";
 
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import IconButton from "@mui/material/IconButton";
+import Grid from "@mui/material/Grid";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 export const NewRepetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
   console.log(loginUser);
@@ -30,7 +45,7 @@ export const NewRepetitions: FC = memo(() => {
 
   const onChangeExerciseDate = (e: ChangeEvent<HTMLInputElement>) =>
     setExerciseDate(new Date(e.target.value));
-  const onChangeExerciseType = (e: ChangeEvent<HTMLSelectElement>) => {
+  const onChangeExerciseType = (e: SelectChangeEvent) => {
     setExerciseType(Number(e.target.value));
     getRepetitions(loginUser?.id, Number(e.target.value));
   };
@@ -59,72 +74,100 @@ export const NewRepetitions: FC = memo(() => {
   return (
     <>
       <h2>記録ページ</h2>
-      <span>筋トレ日</span>
-      <input
+      <TextField
+        id="date"
+        label="筋トレ日"
         type="date"
-        value={`${exerciseDate.getFullYear()}-${(
+        sx={{ width: 220 }}
+        InputLabelProps={{
+          shrink: true,
+        }}
+        defaultValue={`${exerciseDate.getFullYear()}-${(
           "00" +
           (exerciseDate.getMonth() + 1)
         ).slice(-2)}-${("00" + exerciseDate.getDate()).slice(-2)}`}
         onChange={onChangeExerciseDate}
-      ></input>
+      />
       <br />
-      <span>種目</span>
-      <select onChange={onChangeExerciseType}>
-        <option value="">種目を選択</option>
-        {exercises.map((exercise) => (
-          <option key={exercise.id} value={exercise.id}>
-            <>
-              {ExerciseTypeTranslation(exercise.exercise_type)}：{exercise.name}
-            </>
-          </option>
-        ))}
-      </select>
       <br />
-      <span>回数</span>
-      <input
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+          <InputLabel id="select-label">種目</InputLabel>
+          <Select
+            labelId="select-label"
+            label="種目"
+            onChange={onChangeExerciseType}
+          >
+            {exercises.map((exercise) => (
+              <MenuItem key={exercise.id} value={exercise.id}>
+                <>
+                  {ExerciseTypeTranslation(exercise.exercise_type)}：
+                  {exercise.name}
+                </>
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+      <br />
+      <TextField
+        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+        id="outlined-basic"
+        label="回数"
+        variant="outlined"
         type="number"
-        min="0"
+        // min="0"
         value={repetitionNum}
         onChange={onChangerepetitionNum}
-      ></input>
-      <span>rep</span>
+      />
       <br />
-      <span>重量</span>
-      <input
+      <br />
+      <TextField
+        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+        id="outlined-basic"
+        label="重量"
+        variant="outlined"
         type="number"
-        min="0"
+        // min="0"
         value={weight}
         onChange={onChangeWeight}
-      ></input>
-      <span>kg</span>
+      />
       <br />
-      <button
+      <br />
+      <Button
+        variant="contained"
+        endIcon={<AddIcon />}
         onClick={onClickCreateRepetition}
         disabled={exerciseType == 0 || exerciseDate == undefined || loading}
       >
         登録
-      </button>
-      <p>履歴</p>
-      <ul>
+      </Button>
+      <h3>履歴</h3>
+      <Grid>
         {repetitions.map((repetition) => (
           <div key={repetition.id}>
-            <li>
-              <>
-                {repetition.exercise_date}　{repetition.weight}kg　
-                {repetition.repetition_num}回
-              </>
-              　
-              <button
-                onClick={() => onClickDeleteRepetition(repetition.id)}
-                disabled={loading}
+            <List>
+              <ListItem
+                secondaryAction={
+                  <IconButton
+                    onClick={() => onClickDeleteRepetition(repetition.id)}
+                    disabled={loading}
+                  >
+                    <DeleteIcon fontSize="inherit" />
+                  </IconButton>
+                }
               >
-                削除
-              </button>
-            </li>
+                <ListItemText>
+                  <>
+                    {repetition.exercise_date}　{repetition.weight}kg　
+                    {repetition.repetition_num}回
+                  </>
+                </ListItemText>
+              </ListItem>
+            </List>
           </div>
         ))}
-      </ul>
+      </Grid>
     </>
   );
 });

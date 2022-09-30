@@ -1,11 +1,24 @@
 import { memo, FC, useEffect, useState, ChangeEvent, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 
 import { useLoginRequired } from "../../hooks/useLoginUser";
 import { useAllExercises } from "../../hooks/useAllExercises";
 import { Exercise } from "../../types/api/exercise";
 import { ExerciseTypes } from "../../ExerciseTypes";
 import { useCreateExercise } from "../../hooks/useCreateExercise";
-import { useHistory } from "react-router-dom";
+
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
 
 export const Exercises: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -17,7 +30,7 @@ export const Exercises: FC = memo(() => {
 
   useEffect(() => getExercises(loginUser?.id), [createMessage]);
 
-  const onChangeExerciseType = (e: ChangeEvent<HTMLSelectElement>) =>
+  const onChangeExerciseType = (e: SelectChangeEvent) =>
     setExerciseType(e.target.value);
   const onChangeExerciseName = (e: ChangeEvent<HTMLInputElement>) =>
     setExerciseName(e.target.value);
@@ -68,117 +81,155 @@ export const Exercises: FC = memo(() => {
         <p>Laoding...</p>
       ) : (
         <>
-          <p>種目を登録</p>
-          <select onChange={onChangeExerciseType}>
-            <option value="">部位を選択</option>
-            {ExerciseTypes.map((typeName) => (
-              <option value={typeName.en} key={typeName.en}>
-                {typeName.ja}
-              </option>
-            ))}
-          </select>
-          <input
+          <h3>種目を登録</h3>
+          <FormControl fullWidth>
+            <InputLabel id="select-label">部位を選択</InputLabel>
+            <Select
+              labelId="select-label"
+              label="部位を選択"
+              onChange={onChangeExerciseType}
+            >
+              {ExerciseTypes.map((typeName) => (
+                <MenuItem value={typeName.en} key={typeName.en}>
+                  {typeName.ja}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <br />
+          <br />
+          <TextField
+            id="outlined-basic"
+            label="種目名"
+            variant="outlined"
             type="text"
-            placeholder="種目名"
             value={exerciseName}
             onChange={onChangeExerciseName}
-          ></input>
-          <button
+          />
+          <br />
+          <br />
+          <Button
+            variant="contained"
+            endIcon={<AddIcon />}
             onClick={onClickCreateExercise}
             disabled={exerciseType == "" || exerciseName == "" || loading}
           >
             登録
-          </button>
+          </Button>
           <h3>胸部</h3>
-          <ul>
+          <List>
             {chest.map((e) => (
-              <div key={e.id}>
-                <li>
-                  {e.name}{" "}
-                  <button
+              <ListItem
+                key={e.id}
+                disableGutters
+                secondaryAction={
+                  <IconButton
+                    aria-label="edit"
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
                   >
-                    編集
-                  </button>
-                </li>
-              </div>
+                    <EditIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                <ListItemText>{e.name}</ListItemText>
+              </ListItem>
             ))}
-          </ul>
+          </List>
           <h3>背部</h3>
-          <ul>
+          <List>
             {back.map((e) => (
-              <div key={e.id}>
-                <li>
-                  {e.name}{" "}
-                  <button
+              <ListItem
+                key={e.id}
+                disableGutters
+                secondaryAction={
+                  <IconButton
+                    aria-label="edit"
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
                   >
-                    編集
-                  </button>
-                </li>
-              </div>
+                    <EditIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                <ListItemText>{e.name}</ListItemText>
+              </ListItem>
             ))}
-          </ul>
+          </List>
           <h3>脚部</h3>
-          <ul>
+          <List>
             {leg.map((e) => (
-              <div key={e.id}>
-                <li>
-                  {e.name}{" "}
-                  <button
+              <ListItem
+                key={e.id}
+                disableGutters
+                secondaryAction={
+                  <IconButton
+                    aria-label="edit"
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
                   >
-                    編集
-                  </button>
-                </li>
-              </div>
+                    <EditIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                <ListItemText>{e.name}</ListItemText>
+              </ListItem>
             ))}
-          </ul>
+          </List>
           <h3>肩部</h3>
-          <ul>
+          <List>
             {shoulder.map((e) => (
-              <div key={e.id}>
-                <li>
-                  {e.name}{" "}
-                  <button
+              <ListItem
+                key={e.id}
+                disableGutters
+                secondaryAction={
+                  <IconButton
+                    aria-label="edit"
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
                   >
-                    編集
-                  </button>
-                </li>
-              </div>
+                    <EditIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                <ListItemText>{e.name}</ListItemText>
+              </ListItem>
             ))}
-          </ul>
+          </List>
           <h3>腕部</h3>
-          <ul>
+          <List>
             {arm.map((e) => (
-              <div key={e.id}>
-                <li>
-                  {e.name}{" "}
-                  <button
+              <ListItem
+                key={e.id}
+                disableGutters
+                secondaryAction={
+                  <IconButton
+                    aria-label="edit"
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
                   >
-                    編集
-                  </button>
-                </li>
-              </div>
+                    <EditIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                <ListItemText>{e.name}</ListItemText>
+              </ListItem>
             ))}
-          </ul>
+          </List>
           <h3>腹部</h3>
-          <ul>
+          <List>
             {abdominal.map((e) => (
-              <div key={e.id}>
-                <li>
-                  {e.name}{" "}
-                  <button
+              <ListItem
+                key={e.id}
+                disableGutters
+                secondaryAction={
+                  <IconButton
+                    aria-label="edit"
                     onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
                   >
-                    編集
-                  </button>
-                </li>
-              </div>
+                    <EditIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                <ListItemText>{e.name}</ListItemText>
+              </ListItem>
             ))}
-          </ul>
+          </List>
         </>
       )}
     </>

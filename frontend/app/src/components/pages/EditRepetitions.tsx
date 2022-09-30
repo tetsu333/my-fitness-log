@@ -6,6 +6,10 @@ import { UpdateExercise } from "../../types/api/exercise";
 import { ExerciseTypes } from "../../ExerciseTypes";
 import { useUpdateExercise } from "../../hooks/useUpdateExercise";
 
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+
 export const EditRepetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
   console.log(loginUser);
@@ -42,18 +46,26 @@ export const EditRepetitions: FC = memo(() => {
           </option>
         ))}
       </select>
-      <input
+      <br />
+      <br />
+      <TextField
+        id="outlined-basic"
+        label="種目名"
+        variant="outlined"
         type="text"
-        placeholder="種目名"
         value={exerciseName}
         onChange={onChangeExerciseName}
-      ></input>
-      <button
+      />
+      <br />
+      <br />
+      <Button
+        variant="contained"
+        endIcon={<ChangeCircleIcon />}
         onClick={onClickUpdateExercise}
         disabled={exerciseType == "" || exerciseName == ""}
       >
         更新
-      </button>
+      </Button>
     </>
   );
 });
