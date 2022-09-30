@@ -72,8 +72,10 @@ export const NewRepetitions: FC = memo(() => {
   useEffect(() => getExercises(loginUser?.id), []);
 
   return (
-    <>
-      <h2>記録ページ</h2>
+    <Box p={2}>
+      <Grid container justifyContent="center">
+        <h2>記録ページ</h2>
+      </Grid>
       <TextField
         id="date"
         label="筋トレ日"
@@ -115,7 +117,7 @@ export const NewRepetitions: FC = memo(() => {
         id="outlined-basic"
         label="回数"
         variant="outlined"
-        type="number"
+        // type="number"
         // min="0"
         value={repetitionNum}
         onChange={onChangerepetitionNum}
@@ -127,47 +129,48 @@ export const NewRepetitions: FC = memo(() => {
         id="outlined-basic"
         label="重量"
         variant="outlined"
-        type="number"
+        // type="number"
         // min="0"
         value={weight}
         onChange={onChangeWeight}
       />
       <br />
       <br />
-      <Button
-        variant="contained"
-        endIcon={<AddIcon />}
-        onClick={onClickCreateRepetition}
-        disabled={exerciseType == 0 || exerciseDate == undefined || loading}
-      >
-        登録
-      </Button>
-      <h3>履歴</h3>
-      <Grid>
-        {repetitions.map((repetition) => (
-          <div key={repetition.id}>
-            <List>
-              <ListItem
-                secondaryAction={
-                  <IconButton
-                    onClick={() => onClickDeleteRepetition(repetition.id)}
-                    disabled={loading}
-                  >
-                    <DeleteIcon fontSize="inherit" />
-                  </IconButton>
-                }
-              >
-                <ListItemText>
-                  <>
-                    {repetition.exercise_date}　{repetition.weight}kg　
-                    {repetition.repetition_num}回
-                  </>
-                </ListItemText>
-              </ListItem>
-            </List>
-          </div>
-        ))}
+      <Grid container justifyContent="center">
+        <Button
+          size="large"
+          variant="contained"
+          endIcon={<AddIcon />}
+          onClick={onClickCreateRepetition}
+          disabled={exerciseType == 0 || exerciseDate == undefined || loading}
+        >
+          登録
+        </Button>
       </Grid>
-    </>
+      <h3>履歴</h3>
+      {repetitions.map((repetition) => (
+        <div key={repetition.id}>
+          <List>
+            <ListItem
+              secondaryAction={
+                <IconButton
+                  onClick={() => onClickDeleteRepetition(repetition.id)}
+                  disabled={loading}
+                >
+                  <DeleteIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              <ListItemText>
+                <>
+                  {repetition.exercise_date}　{repetition.weight}kg　
+                  {repetition.repetition_num}回
+                </>
+              </ListItemText>
+            </ListItem>
+          </List>
+        </div>
+      ))}
+    </Box>
   );
 });

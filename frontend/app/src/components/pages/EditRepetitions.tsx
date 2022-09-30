@@ -9,6 +9,12 @@ import { useUpdateExercise } from "../../hooks/useUpdateExercise";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 export const EditRepetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -20,7 +26,7 @@ export const EditRepetitions: FC = memo(() => {
     state.exercise_type
   );
   const [exerciseName, setExerciseName] = useState<string>(state.name);
-  const onChangeExerciseType = (e: ChangeEvent<HTMLSelectElement>) =>
+  const onChangeExerciseType = (e: SelectChangeEvent) =>
     setExerciseType(e.target.value);
   const onChangeExerciseName = (e: ChangeEvent<HTMLInputElement>) =>
     setExerciseName(e.target.value);
@@ -33,19 +39,24 @@ export const EditRepetitions: FC = memo(() => {
   };
 
   return (
-    <>
-      <p>更新ページ</p>
-      <select
-        onChange={onChangeExerciseType}
-        defaultValue={state.exercise_type}
-      >
-        <option value="">部位を選択</option>
-        {ExerciseTypes.map((typeName) => (
-          <option value={typeName.en} key={typeName.en}>
-            {typeName.ja}
-          </option>
-        ))}
-      </select>
+    <Box p={2}>
+      <Grid container justifyContent="center">
+        <h3>更新ページ</h3>
+      </Grid>
+      <FormControl fullWidth>
+        <InputLabel id="select-label">部位を選択</InputLabel>
+        <Select
+          labelId="select-label"
+          label="部位を選択"
+          onChange={onChangeExerciseType}
+        >
+          {ExerciseTypes.map((typeName) => (
+            <MenuItem value={typeName.en} key={typeName.en}>
+              {typeName.ja}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <br />
       <br />
       <TextField
@@ -58,14 +69,17 @@ export const EditRepetitions: FC = memo(() => {
       />
       <br />
       <br />
-      <Button
-        variant="contained"
-        endIcon={<ChangeCircleIcon />}
-        onClick={onClickUpdateExercise}
-        disabled={exerciseType == "" || exerciseName == ""}
-      >
-        更新
-      </Button>
-    </>
+      <Grid container justifyContent="center">
+        <Button
+          size="large"
+          variant="contained"
+          endIcon={<ChangeCircleIcon />}
+          onClick={onClickUpdateExercise}
+          disabled={exerciseType == "" || exerciseName == ""}
+        >
+          更新
+        </Button>
+      </Grid>
+    </Box>
   );
 });

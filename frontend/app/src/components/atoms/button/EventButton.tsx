@@ -9,7 +9,12 @@ export const EventButton: FC<{
 }> = memo((props) => {
   const { children, event } = props;
   return (
-    <Button variant="contained" endIcon={<FitnessCenterIcon />} onClick={event}>
+    <Button
+      variant="contained"
+      endIcon={<FitnessCenterIcon />}
+      onClick={event}
+      size="large"
+    >
       {children}
     </Button>
   );

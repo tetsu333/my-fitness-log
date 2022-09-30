@@ -31,10 +31,10 @@ export const Header: FC = memo(() => {
             MyFitnessLog
           </Typography>
           <Button color="inherit" onClick={onClickExercises}>
-            種目一覧
+            種目
           </Button>
           <Button color="inherit" onClick={() => logout()}>
-            ログアウト
+            logout
           </Button>
         </Toolbar>
       </AppBar>

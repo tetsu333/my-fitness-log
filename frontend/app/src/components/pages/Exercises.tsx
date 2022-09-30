@@ -19,6 +19,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 export const Exercises: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -80,8 +82,10 @@ export const Exercises: FC = memo(() => {
       {loading ? (
         <p>Laoding...</p>
       ) : (
-        <>
-          <h3>種目を登録</h3>
+        <Box p={2}>
+          <Grid container justifyContent="center">
+            <h3>登録種目一覧</h3>
+          </Grid>
           <FormControl fullWidth>
             <InputLabel id="select-label">部位を選択</InputLabel>
             <Select
@@ -108,14 +112,17 @@ export const Exercises: FC = memo(() => {
           />
           <br />
           <br />
-          <Button
-            variant="contained"
-            endIcon={<AddIcon />}
-            onClick={onClickCreateExercise}
-            disabled={exerciseType == "" || exerciseName == "" || loading}
-          >
-            登録
-          </Button>
+          <Grid container justifyContent="center">
+            <Button
+              size="large"
+              variant="contained"
+              endIcon={<AddIcon />}
+              onClick={onClickCreateExercise}
+              disabled={exerciseType == "" || exerciseName == "" || loading}
+            >
+              登録
+            </Button>
+          </Grid>
           <h3>胸部</h3>
           <List>
             {chest.map((e) => (
@@ -230,7 +237,7 @@ export const Exercises: FC = memo(() => {
               </ListItem>
             ))}
           </List>
-        </>
+        </Box>
       )}
     </>
   );
