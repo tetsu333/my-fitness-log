@@ -8,7 +8,6 @@ import { ExerciseTypeTranslation } from "../../ExerciseTypes";
 import { useDeleteRepetition } from "../../hooks/useDeleteRepetition";
 
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -71,27 +70,33 @@ export const NewRepetitions: FC = memo(() => {
   useEffect(() => getExercises(loginUser?.id), []);
 
   return (
-    <Box p={2}>
-      <Grid container justifyContent="center">
-        <h2>記録ページ</h2>
-      </Grid>
-      <TextField
-        id="date"
-        label="筋トレ日"
-        type="date"
-        sx={{ width: 220 }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        defaultValue={`${exerciseDate.getFullYear()}-${(
-          "00" +
-          (exerciseDate.getMonth() + 1)
-        ).slice(-2)}-${("00" + exerciseDate.getDate()).slice(-2)}`}
-        onChange={onChangeExerciseDate}
-      />
-      <br />
-      <br />
-      <Box sx={{ minWidth: 120 }}>
+    <Grid container p={2} justifyContent="center">
+      <Grid
+        sx={{ maxWidth: "400px" }}
+        container
+        alignItems="center"
+        justifyContent="center"
+        direction="column"
+      >
+        <Grid container justifyContent="center">
+          <h2>記録ページ</h2>
+        </Grid>
+        <TextField
+          fullWidth
+          id="date"
+          label="筋トレ日"
+          type="date"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          defaultValue={`${exerciseDate.getFullYear()}-${(
+            "00" +
+            (exerciseDate.getMonth() + 1)
+          ).slice(-2)}-${("00" + exerciseDate.getDate()).slice(-2)}`}
+          onChange={onChangeExerciseDate}
+        />
+        <br />
+        <br />
         <FormControl fullWidth>
           <InputLabel id="select-label">種目</InputLabel>
           <Select
@@ -109,63 +114,68 @@ export const NewRepetitions: FC = memo(() => {
             ))}
           </Select>
         </FormControl>
-      </Box>
-      <br />
-      <TextField
-        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        id="outlined-basic"
-        label="回数"
-        variant="outlined"
-        value={repetitionNum}
-        onChange={onChangerepetitionNum}
-      />
-      <br />
-      <br />
-      <TextField
-        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        id="outlined-basic"
-        label="重量"
-        variant="outlined"
-        value={weight}
-        onChange={onChangeWeight}
-      />
-      <br />
-      <br />
-      <Grid container justifyContent="center">
-        <Button
-          size="large"
-          variant="contained"
-          endIcon={<AddIcon />}
-          onClick={onClickCreateRepetition}
-          disabled={exerciseType == 0 || exerciseDate == undefined || loading}
-        >
-          登録
-        </Button>
+        <br />
+        <br />
+        <TextField
+          // inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          fullWidth
+          id="outlined-basic"
+          label="回数"
+          variant="outlined"
+          type="number"
+          value={repetitionNum}
+          onChange={onChangerepetitionNum}
+        />
+        <br />
+        <br />
+        <TextField
+          // inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          fullWidth
+          id="outlined-basic"
+          label="重量(kg)"
+          variant="outlined"
+          type="number"
+          value={weight}
+          onChange={onChangeWeight}
+        />
+        <br />
+        <br />
+        <Grid container justifyContent="center">
+          <Button
+            size="large"
+            variant="contained"
+            endIcon={<AddIcon />}
+            onClick={onClickCreateRepetition}
+            disabled={exerciseType == 0 || exerciseDate == undefined || loading}
+          >
+            登録
+          </Button>
+        </Grid>
+        <h3>履歴</h3>
+        {repetitions.map((repetition) => (
+          <div key={repetition.id}>
+            <List>
+              <ListItem
+                secondaryAction={
+                  <IconButton
+                    onClick={() => onClickDeleteRepetition(repetition.id)}
+                    disabled={loading}
+                  >
+                    <DeleteIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                <ListItemText sx={{ marginRight: "16px" }}>
+                  <>
+                    {repetition.exercise_date}　{repetition.weight}kg　
+                    {repetition.repetition_num}回
+                  </>
+                </ListItemText>
+              </ListItem>
+            </List>
+          </div>
+        ))}
       </Grid>
-      <h3>履歴</h3>
-      {repetitions.map((repetition) => (
-        <div key={repetition.id}>
-          <List>
-            <ListItem
-              secondaryAction={
-                <IconButton
-                  onClick={() => onClickDeleteRepetition(repetition.id)}
-                  disabled={loading}
-                >
-                  <DeleteIcon fontSize="inherit" />
-                </IconButton>
-              }
-            >
-              <ListItemText>
-                <>
-                  {repetition.exercise_date}　{repetition.weight}kg　
-                  {repetition.repetition_num}回
-                </>
-              </ListItemText>
-            </ListItem>
-          </List>
-        </div>
-      ))}
-    </Box>
+    </Grid>
   );
 });

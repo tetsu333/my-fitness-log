@@ -6,7 +6,8 @@ class Api::V1::RepetitionsController < ApplicationController
         id: repetition.id,
         exercise_name: repetition.exercise.name,
         repetition_num: repetition.repetition_num,
-        weight: repetition.weight
+        weight: repetition.weight,
+        exercise_type: I18n.t(repetition.exercise.exercise_type, scope: "enums.exercise.exercise_type")
       }
     end
     render json: data, status: :ok

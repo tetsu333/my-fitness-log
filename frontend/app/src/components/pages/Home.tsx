@@ -12,7 +12,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Box from "@mui/material/Box";
 
 export const Home: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -30,8 +29,9 @@ export const Home: FC = memo(() => {
   useEffect(() => getRepetitionDates(loginUser?.id), []);
 
   return (
-    <Box p={2}>
+    <Grid container justifyContent="center" p={2}>
       <Grid
+        sx={{ maxWidth: "400px" }}
         container
         alignItems="center"
         justifyContent="center"
@@ -61,6 +61,6 @@ export const Home: FC = memo(() => {
         </FormControl>
         <DayRepetitionList dayRepetitions={dayRepetitions} />
       </Grid>
-    </Box>
+    </Grid>
   );
 });

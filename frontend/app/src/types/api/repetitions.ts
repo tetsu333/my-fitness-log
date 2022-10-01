@@ -14,6 +14,7 @@ export type DayRepetitions = {
   exercise_name: string;
   repetition_num: number;
   weight: number;
+  exercise_type: string;
 };
 
 export type CreateRepetition = {

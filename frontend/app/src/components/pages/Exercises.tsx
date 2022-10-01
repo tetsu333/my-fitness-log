@@ -20,7 +20,6 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 
 export const Exercises: FC = memo(() => {
   const loginUser = useLoginRequired();
@@ -82,46 +81,61 @@ export const Exercises: FC = memo(() => {
       {loading ? (
         <p>Laoding...</p>
       ) : (
-        <Box p={2}>
-          <Grid container justifyContent="center">
-            <h3>登録種目一覧</h3>
-          </Grid>
-          <FormControl fullWidth>
-            <InputLabel id="select-label">部位を選択</InputLabel>
-            <Select
-              labelId="select-label"
-              label="部位を選択"
-              onChange={onChangeExerciseType}
-            >
-              {ExerciseTypes.map((typeName) => (
-                <MenuItem value={typeName.en} key={typeName.en}>
-                  {typeName.ja}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <br />
-          <br />
-          <TextField
-            id="outlined-basic"
-            label="種目名"
-            variant="outlined"
-            type="text"
-            value={exerciseName}
-            onChange={onChangeExerciseName}
-          />
-          <br />
-          <br />
-          <Grid container justifyContent="center">
-            <Button
-              size="large"
-              variant="contained"
-              endIcon={<AddIcon />}
-              onClick={onClickCreateExercise}
-              disabled={exerciseType == "" || exerciseName == "" || loading}
-            >
-              登録
-            </Button>
+        <Grid
+          p={2}
+          container
+          alignItems="center"
+          justifyContent="center"
+          direction="column"
+        >
+          <Grid
+            sx={{ maxWidth: "400px" }}
+            container
+            alignItems="center"
+            justifyContent="center"
+            direction="column"
+          >
+            <Grid container justifyContent="center">
+              <h3>登録種目一覧</h3>
+            </Grid>
+            <FormControl fullWidth>
+              <InputLabel id="select-label">部位を選択</InputLabel>
+              <Select
+                labelId="select-label"
+                label="部位を選択"
+                onChange={onChangeExerciseType}
+              >
+                {ExerciseTypes.map((typeName) => (
+                  <MenuItem value={typeName.en} key={typeName.en}>
+                    {typeName.ja}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <br />
+            <br />
+            <TextField
+              fullWidth
+              id="outlined-basic"
+              label="種目名"
+              variant="outlined"
+              type="text"
+              value={exerciseName}
+              onChange={onChangeExerciseName}
+            />
+            <br />
+            <br />
+            <Grid container justifyContent="center">
+              <Button
+                size="large"
+                variant="contained"
+                endIcon={<AddIcon />}
+                onClick={onClickCreateExercise}
+                disabled={exerciseType == "" || exerciseName == "" || loading}
+              >
+                登録
+              </Button>
+            </Grid>
           </Grid>
           <h3>胸部</h3>
           <List>
@@ -237,7 +251,7 @@ export const Exercises: FC = memo(() => {
               </ListItem>
             ))}
           </List>
-        </Box>
+        </Grid>
       )}
     </>
   );

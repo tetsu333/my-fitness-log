@@ -10,7 +10,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -38,48 +37,57 @@ export const EditRepetitions: FC = memo(() => {
   };
 
   return (
-    <Box p={2}>
-      <Grid container justifyContent="center">
-        <h3>更新ページ</h3>
+    <Grid p={2} container justifyContent="center">
+      <Grid
+        sx={{ maxWidth: "400px" }}
+        container
+        alignItems="center"
+        justifyContent="center"
+        direction="column"
+      >
+        <Grid container justifyContent="center">
+          <h3>更新ページ</h3>
+        </Grid>
+        <FormControl fullWidth>
+          <InputLabel id="select-label">部位を選択</InputLabel>
+          <Select
+            labelId="select-label"
+            label="部位を選択"
+            onChange={onChangeExerciseType}
+            value={String(exerciseType)}
+          >
+            {ExerciseTypes.map((typeName) => (
+              <MenuItem value={typeName.en} key={typeName.en}>
+                {typeName.ja}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <br />
+        <br />
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label="種目名"
+          variant="outlined"
+          type="text"
+          value={exerciseName}
+          onChange={onChangeExerciseName}
+        />
+        <br />
+        <br />
+        <Grid container justifyContent="center">
+          <Button
+            size="large"
+            variant="contained"
+            endIcon={<ChangeCircleIcon />}
+            onClick={onClickUpdateExercise}
+            disabled={exerciseType == "" || exerciseName == ""}
+          >
+            更新
+          </Button>
+        </Grid>
       </Grid>
-      <FormControl fullWidth>
-        <InputLabel id="select-label">部位を選択</InputLabel>
-        <Select
-          labelId="select-label"
-          label="部位を選択"
-          onChange={onChangeExerciseType}
-          value={String(exerciseType)}
-        >
-          {ExerciseTypes.map((typeName) => (
-            <MenuItem value={typeName.en} key={typeName.en}>
-              {typeName.ja}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <br />
-      <br />
-      <TextField
-        id="outlined-basic"
-        label="種目名"
-        variant="outlined"
-        type="text"
-        value={exerciseName}
-        onChange={onChangeExerciseName}
-      />
-      <br />
-      <br />
-      <Grid container justifyContent="center">
-        <Button
-          size="large"
-          variant="contained"
-          endIcon={<ChangeCircleIcon />}
-          onClick={onClickUpdateExercise}
-          disabled={exerciseType == "" || exerciseName == ""}
-        >
-          更新
-        </Button>
-      </Grid>
-    </Box>
+    </Grid>
   );
 });
