@@ -1,4 +1,5 @@
-import { memo, FC, useEffect, useState, ChangeEvent } from "react";
+import { memo, FC, useEffect, useState, ChangeEvent, useRef } from "react";
+import * as React from "react";
 
 import { useLoginRequired } from "../../hooks/useLoginUser";
 import { useCreateRepetition } from "../../hooks/useCreateRepetition";
@@ -20,10 +21,20 @@ import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export const NewRepetitions: FC = memo(() => {
   const loginUser = useLoginRequired();
-  const { createRepetition, loading, createMessage } = useCreateRepetition();
+  const { createRepetition, loading, createMessage, successful } =
+    useCreateRepetition();
   const { getExercises, exercises } = useAllExercises();
   const { getRepetitions, repetitions } = useRepetitions();
   const { deleteRepetition, deleteMessage } = useDeleteRepetition();
@@ -35,11 +46,25 @@ export const NewRepetitions: FC = memo(() => {
   const [exerciseType, setExerciseType] = useState<number>(0);
   const [repetitionNum, setrepetitionNum] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
+  const [open, setOpen] = useState<boolean>(false);
 
+  const isFirstRender = useRef(false);
+
+  useEffect(() => {
+    isFirstRender.current = true;
+  }, []);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      setOpen(true);
+    }
+  }, [successful]);
   useEffect(
     () => getRepetitions(loginUser?.id, exerciseType),
     [createMessage, deleteMessage]
   );
+  useEffect(() => getExercises(loginUser?.id), []);
 
   const onChangeExerciseDate = (e: ChangeEvent<HTMLInputElement>) =>
     setExerciseDate(new Date(e.target.value));
@@ -59,6 +84,8 @@ export const NewRepetitions: FC = memo(() => {
       weight: weight,
       exercise_date: exerciseDate,
     });
+    setrepetitionNum(0);
+    setWeight(0);
   };
   const onClickDeleteRepetition = (id: number) => {
     const result = window.confirm("削除しますか？");
@@ -66,8 +93,15 @@ export const NewRepetitions: FC = memo(() => {
       deleteRepetition(id);
     }
   };
-
-  useEffect(() => getExercises(loginUser?.id), []);
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   return (
     <Grid container p={2} justifyContent="center">
@@ -176,6 +210,11 @@ export const NewRepetitions: FC = memo(() => {
           </div>
         ))}
       </Grid>
+      <Snackbar open={open} autoHideDuration={6000}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          登録しました
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 });

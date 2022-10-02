@@ -22,7 +22,7 @@ export const useUserRegister = () => {
         .then((res) => {
           if (res.data) {
             setLoginUser(res.data);
-            alert("ユーザーを作成しました");
+            alert(`ようこそ！${res.data.name}さん`);
             history.push("/home");
           } else {
             setLoading(false);

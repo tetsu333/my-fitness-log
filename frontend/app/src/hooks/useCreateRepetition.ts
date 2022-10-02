@@ -6,6 +6,7 @@ import { RootURL } from "../RequestTypes";
 
 export const useCreateRepetition = () => {
   const [createMessage, setCreateMessage] = useState<string>("");
+  const [successful, setSuccessful] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const createRepetition = useCallback((data: CreateRepetition) => {
     setLoading(true);
@@ -15,14 +16,19 @@ export const useCreateRepetition = () => {
       })
       .then((res) => {
         setCreateMessage(res.data.message);
-        alert("登録しました");
         setLoading(false);
+        setSuccessful(`successful: ${new Date()}`);
       })
       .catch((res) => {
         setCreateMessage(`error: ${new Date()}`);
-        alert(res.response.data);
         setLoading(false);
+        alert(res.response.data);
       });
   }, []);
-  return { createRepetition, loading, createMessage };
+  return {
+    createRepetition,
+    loading,
+    createMessage,
+    successful,
+  };
 };

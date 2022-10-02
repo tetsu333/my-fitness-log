@@ -22,7 +22,6 @@ export const useAuth = () => {
         .then((res) => {
           if (res.data) {
             setLoginUser(res.data);
-            alert("ログインしました");
             history.push("/home");
           } else {
             alert("ユーザーが見つかりません");
@@ -43,7 +42,6 @@ export const useAuth = () => {
         withCredentials: true,
       })
       .then(() => {
-        alert("ログアウトしました");
         history.push("/");
       })
       .catch(() => {

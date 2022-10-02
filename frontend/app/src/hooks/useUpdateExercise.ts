@@ -14,7 +14,6 @@ export const useUpdateExercise = () => {
         withCredentials: true,
       })
       .then(() => {
-        alert("更新しました");
         goBack();
       })
       .catch((res) => {

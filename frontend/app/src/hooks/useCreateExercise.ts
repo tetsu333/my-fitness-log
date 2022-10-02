@@ -13,7 +13,6 @@ export const useCreateExercise = () => {
       })
       .then((res) => {
         setCreateMessage(res.data.message);
-        alert("種目を追加しました");
       })
       .catch((res) => {
         setCreateMessage(`error: ${new Date()}`);

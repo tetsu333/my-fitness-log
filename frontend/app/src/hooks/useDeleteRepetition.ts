@@ -12,7 +12,6 @@ export const useDeleteRepetition = () => {
       })
       .then((res) => {
         setDeleteMessage(res.data.message);
-        alert("削除しました");
       })
       .catch(() => {
         setDeleteMessage(`error: ${new Date()}`);
