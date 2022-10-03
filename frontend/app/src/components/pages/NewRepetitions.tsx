@@ -74,8 +74,10 @@ export const NewRepetitions: FC = memo(() => {
   };
   const onChangerepetitionNum = (e: ChangeEvent<HTMLInputElement>) =>
     setrepetitionNum(Number(e.target.value));
-  const onChangeWeight = (e: ChangeEvent<HTMLInputElement>) =>
+  const onChangeWeight = (e: ChangeEvent<HTMLInputElement>) => {
     setWeight(Number(e.target.value));
+    e.target.value = String(Number(e.target.value));
+  };
   const onClickCreateRepetition = () => {
     createRepetition({
       user_id: loginUser?.id,
