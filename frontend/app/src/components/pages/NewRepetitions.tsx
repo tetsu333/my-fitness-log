@@ -85,7 +85,6 @@ export const NewRepetitions: FC = memo(() => {
       exercise_date: exerciseDate,
     });
     setrepetitionNum(0);
-    setWeight(0);
   };
   const onClickDeleteRepetition = (id: number) => {
     const result = window.confirm("削除しますか？");
@@ -154,23 +153,23 @@ export const NewRepetitions: FC = memo(() => {
           // inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
           fullWidth
           id="outlined-basic"
-          label="回数"
-          variant="outlined"
-          type="number"
-          value={repetitionNum}
-          onChange={onChangerepetitionNum}
-        />
-        <br />
-        <br />
-        <TextField
-          // inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-          fullWidth
-          id="outlined-basic"
           label="重量(kg)"
           variant="outlined"
           type="number"
           value={weight}
           onChange={onChangeWeight}
+        />
+        <br />
+        <br />
+        <TextField
+          inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          fullWidth
+          id="outlined-basic"
+          label="回数"
+          variant="outlined"
+          // type="number"
+          value={repetitionNum}
+          onChange={onChangerepetitionNum}
         />
         <br />
         <br />
