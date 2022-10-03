@@ -40,11 +40,9 @@ export const NewRepetitions: FC = memo(() => {
   const { deleteRepetition, deleteMessage } = useDeleteRepetition();
 
   const date = new Date();
-  // JSTに変換
-  // date.setTime(date.getTime() + 1000 * 60 * 60 * 9);
   const [exerciseDate, setExerciseDate] = useState<Date>(date);
   const [exerciseType, setExerciseType] = useState<number>(0);
-  const [repetitionNum, setrepetitionNum] = useState<number>(0);
+  const [repetitionNum, setRepetitionNum] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -73,11 +71,9 @@ export const NewRepetitions: FC = memo(() => {
     getRepetitions(loginUser?.id, Number(e.target.value));
   };
   const onChangerepetitionNum = (e: ChangeEvent<HTMLInputElement>) =>
-    setrepetitionNum(Number(e.target.value));
-  const onChangeWeight = (e: ChangeEvent<HTMLInputElement>) => {
+    setRepetitionNum(Number(e.target.value));
+  const onChangeWeight = (e: ChangeEvent<HTMLInputElement>) =>
     setWeight(Number(e.target.value));
-    e.target.value = String(Number(weight));
-  };
   const onClickCreateRepetition = () => {
     createRepetition({
       user_id: loginUser?.id,
@@ -86,7 +82,7 @@ export const NewRepetitions: FC = memo(() => {
       weight: weight,
       exercise_date: exerciseDate,
     });
-    setrepetitionNum(0);
+    setRepetitionNum(0);
   };
   const onClickDeleteRepetition = (id: number) => {
     const result = window.confirm("削除しますか？");
