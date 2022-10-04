@@ -46,7 +46,7 @@ export const Exercises: FC = memo(() => {
   };
   const onClickEdit = useCallback(
     (exercise_id: number, name: string, exercise_type: string | number) =>
-      history.push("/home/repetitions/edit", {
+      history.push("/home/exercise/edit", {
         exercise_id: exercise_id,
         name: name,
         exercise_type: exercise_type,

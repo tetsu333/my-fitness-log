@@ -1,7 +1,7 @@
 import { Home } from "../components/pages/Home";
 import { Exercises } from "../components/pages/Exercises";
 import { NewRepetitions } from "../components/pages/NewRepetitions";
-import { EditRepetitions } from "../components/pages/EditRepetitions";
+import { EditExercise } from "../components/pages/EditExercise";
 import { Page404 } from "../components/pages/Page404";
 
 export const homeRoutes = [
@@ -21,9 +21,9 @@ export const homeRoutes = [
     children: <NewRepetitions />,
   },
   {
-    path: "/repetitions/edit",
+    path: "/exercise/edit",
     exact: false,
-    children: <EditRepetitions />,
+    children: <EditExercise />,
   },
   {
     path: "*",

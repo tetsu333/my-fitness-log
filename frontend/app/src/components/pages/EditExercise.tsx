@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-export const EditRepetitions: FC = memo(() => {
+export const EditExercise: FC = memo(() => {
   const loginUser = useLoginRequired();
   const location = useLocation();
   const state = location.state as UpdateExercise;
