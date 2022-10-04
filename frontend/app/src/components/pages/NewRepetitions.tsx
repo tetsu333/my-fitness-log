@@ -92,6 +92,9 @@ export const NewRepetitions: FC = memo(() => {
       deleteRepetition(id);
     }
   };
+  const onBlurWeight = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.value = String(Number(e.target.value));
+  };
   const handleClose = (
     event?: React.SyntheticEvent | Event,
     reason?: string
@@ -158,6 +161,7 @@ export const NewRepetitions: FC = memo(() => {
           type="number"
           value={weight}
           onChange={onChangeWeight}
+          onBlur={onBlurWeight}
         />
         <br />
         <br />
