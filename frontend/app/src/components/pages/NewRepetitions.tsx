@@ -69,6 +69,8 @@ export const NewRepetitions: FC = memo(() => {
   const onChangeExerciseType = (e: SelectChangeEvent) => {
     setExerciseType(Number(e.target.value));
     getRepetitions(loginUser?.id, Number(e.target.value));
+    setWeight(0);
+    setRepetitionNum(0);
   };
   const onChangerepetitionNum = (e: ChangeEvent<HTMLInputElement>) =>
     setRepetitionNum(Number(e.target.value));
