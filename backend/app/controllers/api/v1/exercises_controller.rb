@@ -15,6 +15,7 @@ class Api::V1::ExercisesController < ApplicationController
   def update
     exercise = Exercise.find(params[:exercise_id])
     exercise.name = params[:name]
+    exercise.memo = params[:memo]
     exercise.exercise_type = params[:exercise_type]
     if exercise.save
       render json: {message: "success!"}, status: :ok

@@ -6,4 +6,5 @@ class Exercise < ApplicationRecord
 
   validates :user_id, numericality: true
   validates :name, presence: true, length: { maximum: 30 }, uniqueness: {scope: [:user_id, :exercise_type], message: "は既に追加されています"}
+  validates :memo, length: { maximum: 255 }
 end

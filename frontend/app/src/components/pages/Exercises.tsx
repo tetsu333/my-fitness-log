@@ -45,10 +45,16 @@ export const Exercises: FC = memo(() => {
     setExerciseName("");
   };
   const onClickEdit = useCallback(
-    (exercise_id: number, name: string, exercise_type: string | number) =>
+    (
+      exercise_id: number,
+      name: string,
+      memo: string,
+      exercise_type: string | number
+    ) =>
       history.push("/home/exercise/edit", {
         exercise_id: exercise_id,
         name: name,
+        memo: memo,
         exercise_type: exercise_type,
       }),
     [history]
@@ -146,7 +152,9 @@ export const Exercises: FC = memo(() => {
                 secondaryAction={
                   <IconButton
                     aria-label="edit"
-                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                    onClick={() =>
+                      onClickEdit(e.id, e.name, e.memo, e.exercise_type)
+                    }
                   >
                     <EditIcon fontSize="inherit" />
                   </IconButton>
@@ -165,7 +173,9 @@ export const Exercises: FC = memo(() => {
                 secondaryAction={
                   <IconButton
                     aria-label="edit"
-                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                    onClick={() =>
+                      onClickEdit(e.id, e.name, e.memo, e.exercise_type)
+                    }
                   >
                     <EditIcon fontSize="inherit" />
                   </IconButton>
@@ -184,7 +194,9 @@ export const Exercises: FC = memo(() => {
                 secondaryAction={
                   <IconButton
                     aria-label="edit"
-                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                    onClick={() =>
+                      onClickEdit(e.id, e.name, e.memo, e.exercise_type)
+                    }
                   >
                     <EditIcon fontSize="inherit" />
                   </IconButton>
@@ -203,7 +215,9 @@ export const Exercises: FC = memo(() => {
                 secondaryAction={
                   <IconButton
                     aria-label="edit"
-                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                    onClick={() =>
+                      onClickEdit(e.id, e.name, e.memo, e.exercise_type)
+                    }
                   >
                     <EditIcon fontSize="inherit" />
                   </IconButton>
@@ -222,7 +236,9 @@ export const Exercises: FC = memo(() => {
                 secondaryAction={
                   <IconButton
                     aria-label="edit"
-                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                    onClick={() =>
+                      onClickEdit(e.id, e.name, e.memo, e.exercise_type)
+                    }
                   >
                     <EditIcon fontSize="inherit" />
                   </IconButton>
@@ -241,7 +257,9 @@ export const Exercises: FC = memo(() => {
                 secondaryAction={
                   <IconButton
                     aria-label="edit"
-                    onClick={() => onClickEdit(e.id, e.name, e.exercise_type)}
+                    onClick={() =>
+                      onClickEdit(e.id, e.name, e.memo, e.exercise_type)
+                    }
                   >
                     <EditIcon fontSize="inherit" />
                   </IconButton>

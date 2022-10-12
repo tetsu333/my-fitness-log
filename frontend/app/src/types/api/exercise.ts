@@ -2,6 +2,7 @@ export type Exercise = {
   id: number;
   user_id: number;
   name: string;
+  memo: string;
   exercise_type: number | string;
   created_at: Date;
   updated_at: Date;
@@ -16,5 +17,6 @@ export type CreateExercise = {
 export type UpdateExercise = {
   exercise_id: number;
   name: string;
+  memo: string;
   exercise_type: string | number;
 };

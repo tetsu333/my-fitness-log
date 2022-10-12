@@ -2,6 +2,7 @@ create_table :exercises, force: :cascade do |t|
   t.bigint "user_id", null: false
   t.string "name", null: false
   t.integer "exercise_type", null: false
+  t.string "memo", null: false, default: ""
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
 end

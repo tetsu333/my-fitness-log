@@ -24,14 +24,18 @@ export const EditExercise: FC = memo(() => {
     state.exercise_type
   );
   const [exerciseName, setExerciseName] = useState<string>(state.name);
+  const [exerciseMemo, setExerciseMemo] = useState<string>(state.memo);
   const onChangeExerciseType = (e: SelectChangeEvent) =>
     setExerciseType(e.target.value);
   const onChangeExerciseName = (e: ChangeEvent<HTMLInputElement>) =>
     setExerciseName(e.target.value);
+  const onChangeExerciseMemo = (e: ChangeEvent<HTMLInputElement>) =>
+    setExerciseMemo(e.target.value);
   const onClickUpdateExercise = () => {
     updateExercise({
       exercise_id: state.exercise_id,
       name: exerciseName,
+      memo: exerciseMemo,
       exercise_type: exerciseType,
     });
   };
@@ -73,6 +77,17 @@ export const EditExercise: FC = memo(() => {
           type="text"
           value={exerciseName}
           onChange={onChangeExerciseName}
+        />
+        <br />
+        <br />
+        <TextField
+          fullWidth
+          id="outlined-multiline-static"
+          label="メモ"
+          multiline
+          rows={5}
+          value={exerciseMemo}
+          onChange={onChangeExerciseMemo}
         />
         <br />
         <br />

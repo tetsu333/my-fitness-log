@@ -47,6 +47,7 @@ export const NewRepetitions: FC = memo(() => {
   const [repetitionNum, setRepetitionNum] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
   const [open, setOpen] = useState<boolean>(false);
+  const [exerciseMemo, setExerciseMemo] = useState<string>("");
 
   const isFirstRender = useRef(false);
 
@@ -93,6 +94,9 @@ export const NewRepetitions: FC = memo(() => {
     if (result) {
       deleteRepetition(id);
     }
+  };
+  const onClickMenuItem = (memo: string) => {
+    setExerciseMemo(memo);
   };
   const onBlurWeight = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.value = String(Number(e.target.value));
@@ -143,7 +147,11 @@ export const NewRepetitions: FC = memo(() => {
             onChange={onChangeExerciseType}
           >
             {exercises.map((exercise) => (
-              <MenuItem key={exercise.id} value={exercise.id}>
+              <MenuItem
+                key={exercise.id}
+                value={exercise.id}
+                onClick={() => onClickMenuItem(exercise.memo)}
+              >
                 <>
                   {ExerciseTypeTranslation(exercise.exercise_type)}：
                   {exercise.name}
@@ -190,6 +198,18 @@ export const NewRepetitions: FC = memo(() => {
             登録
           </Button>
         </Grid>
+        <br />
+        <br />
+        <TextField
+          fullWidth
+          id="filled-multiline-flexible"
+          label="種目メモ"
+          multiline
+          rows={5}
+          value={exerciseMemo}
+          variant="filled"
+          disabled
+        />
         <h3>履歴</h3>
         {repetitions.map((repetition) => (
           <div key={repetition.id}>
